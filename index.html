@@ -2,22 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Console Markdown Enterprise - Corrigido</title>
   <link rel="icon" type="image/png" href="./favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css" /> -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.css" />
-
-  <!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/styles/github-dark.min.css -->
-
-
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,30 +38,27 @@
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(91,140,255,.18), transparent 24%),
-        radial-gradient(circle at top right, rgba(123,97,255,.14), transparent 24%),
-        linear-gradient(180deg, #07101d 0%, #091427 100%);
-      overflow-x: hidden;
-    }
-
-    #app { min-height: 100vh; padding: 14px; }
-
-    a { color: #8fb0ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .glass {
-      background: var(--panel);
-      backdrop-filter: blur(18px);
+          --bg: #f4f6fa;
+          --panel: #f0f1f5;
+          --line: #d1d5db;
+          --line-strong: #b0b6c3;
+          --text: #23272f;
+          --muted: #6b7280;
+          --primary: #183153;
+          --primary-2: #25406b;
+          --success: #16c79a;
+          --danger: #ff647c;
+          --shadow: 0 8px 32px rgba(24,49,83,0.10);
+          --radius-xl: 24px;
+          --radius-lg: 18px;
+          --radius-md: 14px;
       -webkit-backdrop-filter: blur(18px);
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
     }
 
-    .layout {
-      max-width: 1700px;
-      margin: 0 auto;
-      display: grid;
+          background: linear-gradient(180deg, #f4f6fa 0%, #e5e7eb 100%);
       grid-template-columns: 1fr;
       gap: 14px;
     }
@@ -91,21 +80,26 @@
       width: 48px;
       height: 48px;
       border-radius: 16px;
-      display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: #fff;
+          border: 1px solid var(--line);
       font-weight: 800;
       flex-shrink: 0;
     }
 
     .brand h1 {
+          background: var(--primary);
+          color: #fff;
       margin: 0;
       font-size: 1rem;
       line-height: 1.15;
       letter-spacing: -.02em;
     }
 
+          background: var(--primary-2);
+          color: #fff;
+          border-radius: var(--radius-xl);
     .brand p {
       margin: 4px 0 0;
       color: var(--muted);
@@ -113,7 +107,7 @@
     }
 
     .side-section {
-      padding: 12px;
+          background: var(--primary-2);
       border: 1px solid var(--line);
       border-radius: 18px;
       background: rgba(255,255,255,.03);
@@ -192,6 +186,13 @@
     }
 
     .actions-grid,
+    .actions-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -263,6 +264,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      justify-content: center;
+      align-items: center;
     }
 
     .editor-wrap {
@@ -607,7 +610,7 @@
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
-                <el-button round size="small" @click="inserirHTML">HTML #101</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML #102</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -679,7 +682,6 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="https://unpkg.com/element-plus"></script>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/highlight.min.js"></script> -->
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
   <!-- Carregar linguagens highlight.js -->
   <script>
@@ -715,14 +717,7 @@
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script> -->
-
-  <!-- Mermaid.js v11.4.1 - minificado -->
-  <!-- <script src="https://jsdelivr.net"></script> -->
-
-  <!-- ##?## -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
-
   
   <script>
     const STORAGE_KEY = 'console_markdown_mermaid_enterprise_fixed_v1';
@@ -1116,10 +1111,10 @@ function makeMd() {
           this.inserirArquivoNoCursor('modelo-vue-01.md');
         },
         inserirVue2() {
-          this.inserirArquivoNoCursor('modelo-????-01.md');
+          this.inserirArquivoNoCursor('modelo-vue-02.md');
         },
         inserirVue3() {
-          this.inserirArquivoNoCursor('modelo-????-01.md');
+          this.inserirArquivoNoCursor('modelo-vue-03.md');
         },
         inserirRuby() {
           this.inserirArquivoNoCursor('modelo-ruby-01.md');
@@ -1131,10 +1126,10 @@ function makeMd() {
           this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
         inserirCSharp() {
-          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-sharp-01.md');
         },
         inserirCPlus() {
-          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-plus-01.md');
         },
         inserirSqlCreate() {
           this.inserirArquivoNoCursor('modelo-sql-create-01.md');
@@ -1152,7 +1147,7 @@ function makeMd() {
           this.inserirArquivoNoCursor('modelo-sql-delete-01.md');
         },
         inserirSqlJoin() {
-          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-sql-join-01.md');
         },
         inserirDiagramaGantt() {
           this.inserirArquivoNoCursor('modelo-diagrama-gantt-01.md');
@@ -1161,10 +1156,10 @@ function makeMd() {
           this.inserirArquivoNoCursor('modelo-diagrama-kamban-01.md');
         },
         inserirDiagramaClasses() {
-          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-diagrama-classes-01.md');
         },
         inserirDiagramaSequecia() {
-          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-diagrama-sequencia-01.md');
         },
         inserirDiagramaDER() {
           this.inserirArquivoNoCursor('modelo-diagrama-der-01.md');
