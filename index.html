@@ -596,7 +596,7 @@
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
-                <el-button round size="small" @click="inserirHTML">HTML #3</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML #4</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -1234,7 +1234,11 @@ function makeMd() {
           }
         },
         buildExportHtml() {
-          const markdown = escapeTemplate(this.markdownAtual || '');
+          // Corrige blocos de código markdown HTML para usar quatro crases, evitando conflito com template string
+          let markdownRaw = this.markdownAtual || '';
+          // Substitui blocos ```html ... ``` por ````html ... ````
+          markdownRaw = markdownRaw.replace(/```html([\s\S]*?)```/g, '````html$1````');
+          const markdown = escapeTemplate(markdownRaw);
           const title = escapeTemplate(this.documentoAtual?.nome || 'Documento');
 
           return `<!DOCTYPE html>
