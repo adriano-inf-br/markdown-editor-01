@@ -1,3 +1,3 @@
-```html
-<p> modelo-sql-delete-01.md </p>
-```
+DELETE FROM carrinho_itens
+WHERE carrinho_id = 42
+  AND produto_id = 7;

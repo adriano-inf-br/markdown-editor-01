@@ -1,13 +1,43 @@
 # Documento Modelo 3
 
-## Gráficos e Diagramas com Markdown e Mermaid
+## Guia rápido de snippets por tecnologia
 
-Exemplos de gráficos e diagramas do dia a dia da engenharia/arquitetura de sistemas, analise de negócio, Gestão de Projetos e SCRUM.
+Este documento demonstra como o editor pode armazenar exemplos curtos para linguagens diferentes.
 
 ---
 
-## 1. Lorem Ipsum ...
+## CSS
 
-# Titulo 1
+```css
+.layout {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+```
 
-# Titulo 2
+## JavaScript
+
+```javascript
+async function carregarUsuarios() {
+  const resposta = await fetch('/api/usuarios');
+  return resposta.json();
+}
+```
+
+## SQL
+
+```sql
+SELECT nome, email
+FROM usuarios
+WHERE ativo = true
+ORDER BY nome;
+```
+
+## Mermaid
+
+```mermaid
+flowchart LR
+    Editor --> Preview
+    Preview --> Exportacao
+```

@@ -161,7 +161,6 @@
       font-size: .82rem;
     }
 
-    .actions-grid,
     .actions-grid {
       display: flex;
       flex-wrap: wrap;
@@ -420,6 +419,14 @@
       text-decoration: underline;
     }
 
+    .glass {
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.52);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
     .el-button+.el-button {
       margin-left: 0px;
     }
@@ -518,10 +525,7 @@
               <li><a href="./exemplo-markdown-01.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 01</a></li>
               <li><a href="./exemplo-markdown-02.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 02</a></li>
               <li><a href="./exemplo-markdown-03.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 03</a></li>
-              <li>-</li>
-              <li><a href="./exemplo-markdown-01.html" target="_blank" rel="noopener noreferrer">Exemplo 01</a></li>
-              <li><a href="./exemplo-markdown-02.html" target="_blank" rel="noopener noreferrer">Exemplo 02</a></li>
-              <li><a href="./exemplo-markdown-03.html" target="_blank" rel="noopener noreferrer">Exemplo 03</a></li>
+              <li><a href="./exemplo-markdown-04.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 04</a></li>
             </ul>
           </div>
         </section>
@@ -612,15 +616,16 @@
                 <el-button round size="small" @click="inserirSqlCreate">SQL Create</el-button>
                 <el-button round size="small" @click="inserirSqlSelect">SQL Select</el-button>
                 <el-button round size="small" @click="inserirSqlInsert">SQL Insert</el-button>
+                <el-button round size="small" @click="inserirSqlUpdate">SQL Update</el-button>
                 <el-button round size="small" @click="inserirSqlDelete">SQL Delete</el-button>
                 <el-button round size="small" @click="inserirSqlJoin">SQL Join</el-button>
                 <el-button round size="small" @click="inserirDiagramaGantt">Gantt</el-button>
-                <el-button round size="small" @click="inserirDiagramaKamban">Kamban</el-button>
+                <el-button round size="small" @click="inserirDiagramaKamban">Kanban</el-button>
                 <el-button round size="small" @click="inserirDiagramaClasses">Classe</el-button>
                 <el-button round size="small" @click="inserirDiagramaSequecia">Sequência</el-button>
                 <el-button round size="small" @click="inserirDiagramaDER">DER</el-button>
                 <el-button round size="small" @click="inserirGraficoPizza">Pizza</el-button>
-                <el-button round size="small" @click="inserirX">XXX</el-button>
+                <el-button round size="small" @click="inserirPromptIA">Prompt IA</el-button>
               </div>
             </div>
 
@@ -767,20 +772,6 @@ public function index()
       return encodeURIComponent(str);
     }
 
-    function normalizeLang2(lang) {
-      const raw = (lang || '').trim().toLowerCase();
-      const map = {
-        'js': 'javascript','node': 'javascript','mjs': 'javascript','cjs': 'javascript',
-        'ts': 'typescript','py': 'python','rb': 'ruby','sh': 'bash','shell': 'bash',
-        'zsh': 'bash','ps1': 'powershell','cmd': 'dos','htm': 'html','html5': 'html',
-        'xhtml': 'xml','yml': 'yaml','md': 'markdown','vue': 'xml','blade': 'php',
-        'laravel': 'php','mysql': 'sql','mariadb': 'sql','postgres': 'sql','pgsql': 'sql',
-        'docker': 'dockerfile','compose': 'yaml','dotenv': 'bash','env': 'bash',
-        'pas': 'delphi','pascal': 'delphi','objc': 'objectivec','c#': 'csharp','cs': 'csharp'
-      };
-      return map[raw] || raw;
-    }
-
     function escapeTemplate(str) {
       return str
         .replace(/\\/g, '\\\\')
@@ -827,6 +818,47 @@ public function index()
       };
       return map[raw] || raw;
     }
+
+    function sanitizeSnippet(content) {
+      const normalized = String(content || '').replace(/\r\n/g, '\n').trim();
+      const fenceMatch = normalized.match(/^```([a-z0-9#+-]+)?\n([\s\S]*?)\n```$/i);
+      if (fenceMatch) return fenceMatch[2].trim();
+      return normalized;
+    }
+
+    const MODEL_SPECS = {
+      'modelo-html-01.md': { language: 'html' },
+      'modelo-css-01.md': { language: 'css' },
+      'modelo-js-01.md': { language: 'javascript' },
+      'modelo-html-index-01.md': { language: 'html' },
+      'modelo-first-mobile-01.md': { language: 'css' },
+      'modelo-painel-admin-01.md': { language: 'html' },
+      'modelo-php-01.md': { language: 'php' },
+      'modelo-php-ansi-01.md': { language: 'php' },
+      'modelo-php-mvc-01.md': { language: 'php' },
+      'modelo-php-classe-01.md': { language: 'php' },
+      'modelo-vue-01.md': { language: 'vue' },
+      'modelo-vue-02.md': { language: 'vue' },
+      'modelo-vue-03.md': { language: 'vue' },
+      'modelo-ruby-01.md': { language: 'ruby' },
+      'modelo-pascal-01.md': { language: 'pascal' },
+      'modelo-c-ansi-01.md': { language: 'c' },
+      'modelo-c-sharp-01.md': { language: 'csharp' },
+      'modelo-c-plus-01.md': { language: 'cpp' },
+      'modelo-sql-create-01.md': { language: 'sql' },
+      'modelo-sql-select-01.md': { language: 'sql' },
+      'modelo-sql-insert-01.md': { language: 'sql' },
+      'modelo-sql-update-01.md': { language: 'sql' },
+      'modelo-sql-delete-01.md': { language: 'sql' },
+      'modelo-sql-join-01.md': { language: 'sql' },
+      'modelo-diagrama-gantt-01.md': { language: 'mermaid' },
+      'modelo-diagrama-kamban-01.md': { language: 'mermaid' },
+      'modelo-diagrama-classes-01.md': { language: 'mermaid' },
+      'modelo-diagrama-sequencia-01.md': { language: 'mermaid' },
+      'modelo-diagrama-der-01.md': { language: 'mermaid' },
+      'modelo-grafico-pizza-01.md': { language: 'mermaid' },
+      'modelo-prompt-ia-01.md': { language: 'markdown' }
+    };
 
     function makeMd() {
       const md = window.markdownit({
@@ -1027,13 +1059,13 @@ public function index()
          */
         async inserirArquivoNoCursor(arquivoMD) {
           const nomeArquivo = arquivoMD.endsWith('.md') ? arquivoMD : arquivoMD + '.md';
+          const spec = MODEL_SPECS[nomeArquivo];
           try {
             const resposta = await fetch(nomeArquivo);
             if (!resposta.ok) throw new Error('Arquivo não encontrado');
-            let conteudo = await resposta.text();
-            // Remove blocos markdown já existentes para evitar duplicidade
-            conteudo = conteudo.replace(/^```html\s*/i, '').replace(/```\s*$/i, '');
-            const bloco = `\n\n\`\`\`html\n${conteudo.trim()}\n\`\`\`\n`;
+            const conteudo = sanitizeSnippet(await resposta.text());
+            const language = spec?.language || 'text';
+            const bloco = `\n\n\`\`\`${language}\n${conteudo}\n\`\`\`\n`;
             this.inserirNoCursor(bloco, '', '');
             this.status.mensagem = 'Modelo inserido com sucesso.';
           } catch (e) {
@@ -1052,9 +1084,6 @@ public function index()
           this.inserirNoCursor('\n```mermaid\nsequenceDiagram\n    participant A as Cliente\n    participant B as API\n    A->>B: Requisição\n    B-->>A: Resposta\n```\n');
         },
 
-        inserirXXXXX() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
-        },
         inserirHTML() {
           this.inserirArquivoNoCursor('modelo-html-01.md');
         },
@@ -1145,8 +1174,8 @@ public function index()
         inserirGraficoPizza() {
           this.inserirArquivoNoCursor('modelo-grafico-pizza-01.md');
         },
-        inserirX() {
-          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
+        inserirPromptIA() {
+          this.inserirArquivoNoCursor('modelo-prompt-ia-01.md');
         },
 
         inserirSeparador() { this.inserirNoCursor('\n---\n'); },
@@ -1263,7 +1292,7 @@ public function index()
   <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"><\/script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/highlight.min.js"><\/script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"><\/script>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"><\/script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"><\/script>
   <script>
     const markdown = \`${markdown}\`;
 
@@ -1272,6 +1301,20 @@ public function index()
     }
 
     function escapeAttr(str){ return encodeURIComponent(str); }
+
+    function normalizeLang(lang){
+      const raw = (lang || '').trim().toLowerCase();
+      const map = {
+        'js': 'javascript','node': 'javascript','mjs': 'javascript','cjs': 'javascript',
+        'ts': 'typescript','py': 'python','rb': 'ruby','sh': 'bash','shell': 'bash',
+        'zsh': 'bash','ps1': 'powershell','cmd': 'dos','htm': 'html','html5': 'html',
+        'xhtml': 'xml','yml': 'yaml','md': 'markdown','vue': 'xml','blade': 'php',
+        'laravel': 'php','mysql': 'sql','mariadb': 'sql','postgres': 'sql','pgsql': 'sql',
+        'docker': 'dockerfile','compose': 'yaml','dotenv': 'bash','env': 'bash',
+        'pas': 'delphi','pascal': 'delphi','objc': 'objectivec','c#': 'csharp','cs': 'csharp'
+      };
+      return map[raw] || raw;
+    }
 
     mermaid.initialize({startOnLoad:false,securityLevel:'loose',theme:'light',flowchart:{useMaxWidth:true,htmlLabels:true}});
 

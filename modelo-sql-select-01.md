@@ -1,3 +1,8 @@
-```html
-<p> modelo-sql-select-01.md </p>
-```
+SELECT
+  id,
+  nome,
+  preco,
+  estoque
+FROM produtos
+WHERE estoque > 0
+ORDER BY preco DESC;

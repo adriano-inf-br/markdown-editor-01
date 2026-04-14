@@ -1,3 +1,14 @@
-```html
-<p> modelo-c-plus-01.md </p>
-```
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> pedidos = {12, 18, 25, 30};
+    int soma = 0;
+
+    for (int quantidade : pedidos) {
+        soma += quantidade;
+    }
+
+    std::cout << "Itens processados: " << soma << std::endl;
+    return 0;
+}

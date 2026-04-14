@@ -1,3 +1,4 @@
-```html
-<p> modelo-sql-update-01.md </p>
-```
+UPDATE produtos
+SET preco = preco * 1.08,
+    atualizado_em = CURRENT_TIMESTAMP
+WHERE categoria = 'perifericos';

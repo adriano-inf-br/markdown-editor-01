@@ -1,3 +1,7 @@
-```html
-<p> modelo-sql-create-01.md </p>
-```
+CREATE TABLE produtos (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(120) NOT NULL,
+  preco DECIMAL(10, 2) NOT NULL,
+  estoque INT NOT NULL DEFAULT 0,
+  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
