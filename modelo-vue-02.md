@@ -1,9 +1,10 @@
 <template>
-  <form class="filtro" @submit.prevent="buscar">
-    <input v-model="termo" placeholder="Buscar produto" />
-    <button type="submit">Pesquisar</button>
+  <form class="filtro-pedidos" @submit.prevent>
+    <input v-model="termo" placeholder="Buscar por cliente" />
     <ul>
-      <li v-for="item in resultados" :key="item.id">{{ item.nome }}</li>
+      <li v-for="pedido in filtrados" :key="pedido.numero">
+        #{{ pedido.numero }} - {{ pedido.cliente }}
+      </li>
     </ul>
   </form>
 </template>
@@ -12,18 +13,14 @@
 import { computed, ref } from 'vue';
 
 const termo = ref('');
-const produtos = ref([
-  { id: 1, nome: 'Monitor ultrawide' },
-  { id: 2, nome: 'Mouse vertical' },
-  { id: 3, nome: 'Teclado ABNT2' }
+const pedidos = ref([
+  { numero: 1024, cliente: 'Ana Costa' },
+  { numero: 1025, cliente: 'Bruno Lima' },
+  { numero: 1026, cliente: 'Carla Souza' }
 ]);
 
-const resultados = computed(() => {
+const filtrados = computed(() => {
   const filtro = termo.value.trim().toLowerCase();
-  return produtos.value.filter((item) => item.nome.toLowerCase().includes(filtro));
+  return pedidos.value.filter((pedido) => pedido.cliente.toLowerCase().includes(filtro));
 });
-
-function buscar() {
-  console.log('Filtro aplicado:', termo.value);
-}
 </script>

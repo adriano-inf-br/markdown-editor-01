@@ -1,12 +1,12 @@
 kanban
-    title Fluxo do time de produto
+    title Fluxo do time de operacao
     section Backlog
-      Levantar regras de negocio[Owner: PO]
-      Refinar historias[Owner: Squad]
+      Mapear gargalos de atendimento[Owner: PO]
+      Revisar regras de expedicao[Owner: Operacoes]
     section Em andamento
-      Implementar autenticacao[Owner: Backend]
-      Ajustar layout responsivo[Owner: Frontend]
+      Implementar painel de pedidos[Owner: Frontend]
+      Sincronizar status no backend[Owner: Backend]
     section Validacao
-      Testar fluxo de checkout[Owner: QA]
+      Testar SLA de separacao[Owner: QA]
     section Concluido
-      Publicar prototipo[Owner: Design]
+      Publicar documentacao base[Owner: Tech Writer]

@@ -1,18 +1,19 @@
 <?php
 
-final class Cliente
+final class Pedido
 {
     public function __construct(
-        private string $nome,
-        private string $email
+        private int $numero,
+        private string $status,
+        private float $total
     ) {
     }
 
-    public function saudacao(): string
+    public function resumo(): string
     {
-        return sprintf('Olá, %s! Seu contato é %s.', $this->nome, $this->email);
+        return sprintf('Pedido #%d - %s - R$ %.2f', $this->numero, strtoupper($this->status), $this->total);
     }
 }
 
-$cliente = new Cliente('Marina', 'marina@empresa.com');
-echo $cliente->saudacao();
+$pedido = new Pedido(1024, 'separacao', 349.90);
+echo $pedido->resumo();

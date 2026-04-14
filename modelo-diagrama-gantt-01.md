@@ -1,12 +1,12 @@
 gantt
-    title Cronograma de Implantacao
+    title Operacao de implantacao do painel de pedidos
     dateFormat  YYYY-MM-DD
-    section Planejamento
-    Levantamento de requisitos :done, des1, 2026-04-01, 3d
-    Prototipo navegavel        :done, des2, after des1, 4d
-    section Desenvolvimento
-    Backend API                :active, dev1, 2026-04-08, 6d
-    Frontend painel            :dev2, after dev1, 5d
+    section Descoberta
+    Mapear fluxos atuais         :done, a1, 2026-04-01, 3d
+    Definir indicadores          :done, a2, after a1, 2d
     section Entrega
-    Testes integrados          :test1, after dev2, 3d
-    Go-live                    :milestone, go1, after test1, 1d
+    Construir dashboard          :active, b1, 2026-04-07, 5d
+    Integrar status de pedidos   :b2, after b1, 4d
+    section Validacao
+    Testar alertas operacionais  :c1, after b2, 3d
+    Publicar versao inicial      :milestone, c2, after c1, 1d

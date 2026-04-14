@@ -1,5 +1,5 @@
-pie title Distribuicao de tickets por area
-    "Frontend" : 14
-    "Backend" : 10
-    "QA" : 6
-    "UX" : 4
+pie title Distribuicao de pedidos por status
+    "Pendentes" : 12
+    "Separacao" : 5
+    "Enviados" : 21
+    "Cancelados" : 2

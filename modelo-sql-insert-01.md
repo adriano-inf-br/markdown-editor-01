@@ -1,5 +1,5 @@
-INSERT INTO produtos (nome, preco, estoque)
+INSERT INTO pedidos (numero, cliente_nome, status, total)
 VALUES
-  ('Teclado mecânico', 349.90, 12),
-  ('Mouse gamer', 159.90, 25),
-  ('Webcam Full HD', 289.00, 8);
+  ('PED-1024', 'Ana Costa', 'separacao', 349.90),
+  ('PED-1025', 'Bruno Lima', 'pendente', 129.90),
+  ('PED-1026', 'Carla Souza', 'enviado', 599.00);

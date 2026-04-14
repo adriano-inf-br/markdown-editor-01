@@ -1,26 +1,27 @@
 <?php
 
-class ProdutoController
+class PedidoController
 {
     public function index(): array
     {
-        $repository = new ProdutoRepository();
-        $produtos = $repository->all();
+        $repository = new PedidoRepository();
 
         return [
-            'view' => 'produtos.index',
-            'data' => ['produtos' => $produtos]
+            'view' => 'pedidos.index',
+            'data' => [
+                'pedidos' => $repository->ultimos(10),
+            ],
         ];
     }
 }
 
-class ProdutoRepository
+class PedidoRepository
 {
-    public function all(): array
+    public function ultimos(int $limite): array
     {
         return [
-            ['id' => 1, 'nome' => 'Teclado mecânico'],
-            ['id' => 2, 'nome' => 'Headset USB']
+            ['numero' => 1024, 'cliente' => 'Ana Costa', 'status' => 'separacao'],
+            ['numero' => 1025, 'cliente' => 'Bruno Lima', 'status' => 'pendente'],
         ];
     }
 }

@@ -1,43 +1,42 @@
 # Documento Modelo 3
 
-## Guia rápido de snippets por tecnologia
+## Kit de snippets do painel de pedidos
 
-Este documento demonstra como o editor pode armazenar exemplos curtos para linguagens diferentes.
+Exemplos curtos e coerentes com a mesma operacao: pedidos, status, atendimento e expedicao.
 
 ---
 
 ## CSS
 
 ```css
-.layout {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.card-status {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
 }
 ```
 
 ## JavaScript
 
 ```javascript
-async function carregarUsuarios() {
-  const resposta = await fetch('/api/usuarios');
-  return resposta.json();
-}
+const atrasados = pedidos.filter((pedido) => pedido.status === 'pendente');
+console.log(`Pedidos atrasados: ${atrasados.length}`);
 ```
 
 ## SQL
 
 ```sql
-SELECT nome, email
-FROM usuarios
-WHERE ativo = true
-ORDER BY nome;
+SELECT numero, cliente_nome, status
+FROM pedidos
+WHERE status = 'pendente';
 ```
 
 ## Mermaid
 
 ```mermaid
 flowchart LR
-    Editor --> Preview
-    Preview --> Exportacao
+    Atendimento --> Separacao
+    Separacao --> Expedicao
+    Expedicao --> Entrega
 ```

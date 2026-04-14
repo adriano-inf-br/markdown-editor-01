@@ -1,3 +1,3 @@
-DELETE FROM carrinho_itens
-WHERE carrinho_id = 42
-  AND produto_id = 7;
+DELETE FROM pedidos
+WHERE numero = 'PED-1026'
+  AND status = 'cancelado';

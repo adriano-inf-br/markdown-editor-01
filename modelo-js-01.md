@@ -1,13 +1,15 @@
-const produtos = [
-  { id: 1, nome: 'Notebook', preco: 4599.9 },
-  { id: 2, nome: 'Mouse sem fio', preco: 129.9 },
-  { id: 3, nome: 'Monitor 27', preco: 1499.0 }
+const pedidos = [
+  { numero: 1024, cliente: 'Ana Costa', status: 'separacao', total: 349.9 },
+  { numero: 1025, cliente: 'Bruno Lima', status: 'pendente', total: 129.9 },
+  { numero: 1026, cliente: 'Carla Souza', status: 'enviado', total: 599.0 }
 ];
 
-const total = produtos.reduce((soma, item) => soma + item.preco, 0);
-const resumo = produtos
-  .map((item) => `${item.nome}: R$ ${item.preco.toFixed(2)}`)
+const pendentes = pedidos.filter((pedido) => pedido.status === 'pendente').length;
+const faturamento = pedidos.reduce((soma, pedido) => soma + pedido.total, 0);
+const resumo = pedidos
+  .map((pedido) => `#${pedido.numero} - ${pedido.cliente} - ${pedido.status}`)
   .join('\n');
 
 console.log(resumo);
-console.log(`Total do carrinho: R$ ${total.toFixed(2)}`);
+console.log(`Pedidos pendentes: ${pendentes}`);
+console.log(`Faturamento parcial: R$ ${faturamento.toFixed(2)}`);

@@ -1,15 +1,16 @@
 class Pedido
-  attr_reader :numero, :total
+  attr_reader :numero, :status, :total
 
-  def initialize(numero, total)
+  def initialize(numero, status, total)
     @numero = numero
+    @status = status
     @total = total
   end
 
-  def aprovado?
-    total >= 100.0
+  def em_atraso?
+    status == 'pendente'
   end
 end
 
-pedido = Pedido.new('PED-2026-0001', 149.90)
-puts "Pedido #{pedido.numero} aprovado? #{pedido.aprovado?}"
+pedido = Pedido.new('1025', 'pendente', 129.90)
+puts "Pedido ##{pedido.numero} em atraso? #{pedido.em_atraso?}"

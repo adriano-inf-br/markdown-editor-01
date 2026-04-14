@@ -1,14 +1,15 @@
 using System;
 
-public class RelatorioVendas
+public class ResumoPedidos
 {
     public static void Main()
     {
-        var total = 18990.50m;
-        var meta = 15000m;
-        var atingiuMeta = total >= meta;
+        var pendentes = 12;
+        var enviados = 21;
+        var totalHoje = 3490.75m;
 
-        Console.WriteLine($"Total vendido: {total:C}");
-        Console.WriteLine($"Meta atingida? {atingiuMeta}");
+        Console.WriteLine($"Pendentes: {pendentes}");
+        Console.WriteLine($"Enviados: {enviados}");
+        Console.WriteLine($"Faturamento do dia: {totalHoje:C}");
     }
 }

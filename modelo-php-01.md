@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-function calcularFrete(float $subtotal): float
+function calcularTotalPedido(array $itens): float
 {
-    if ($subtotal >= 300) {
-        return 0.0;
+    $total = 0.0;
+
+    foreach ($itens as $item) {
+        $total += $item['quantidade'] * $item['preco_unitario'];
     }
 
-    return 19.90;
+    return $total;
 }
 
-$subtotal = 249.90;
-$frete = calcularFrete($subtotal);
+$itens = [
+    ['produto' => 'Teclado mecanico', 'quantidade' => 1, 'preco_unitario' => 349.90],
+    ['produto' => 'Mouse sem fio', 'quantidade' => 2, 'preco_unitario' => 129.90],
+];
 
-echo 'Subtotal: R$ ' . number_format($subtotal, 2, ',', '.') . PHP_EOL;
-echo 'Frete: R$ ' . number_format($frete, 2, ',', '.') . PHP_EOL;
+echo 'Total do pedido: R$ ' . number_format(calcularTotalPedido($itens), 2, ',', '.');

@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 int main(void) {
-    int estoque = 12;
-    int reposicao = 8;
-    int total = estoque + reposicao;
+    int pendentes = 12;
+    int separacao = 5;
+    int enviados = 21;
 
-    printf("Estoque inicial: %d\n", estoque);
-    printf("Reposicao: %d\n", reposicao);
-    printf("Estoque final: %d\n", total);
+    printf("Pendentes: %d\n", pendentes);
+    printf("Em separacao: %d\n", separacao);
+    printf("Enviados: %d\n", enviados);
 
     return 0;
 }

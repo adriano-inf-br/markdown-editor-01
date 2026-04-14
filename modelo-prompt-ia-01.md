@@ -1,15 +1,15 @@
 # Prompt para assistente de IA
 
 ## Objetivo
-Gerar um plano de implantacao para um sistema de pedidos online.
+Criar um plano de melhoria para o painel operacional de pedidos.
 
 ## Contexto
-- A operacao atual usa planilhas.
-- O time possui backend, frontend e QA.
-- O prazo e guiado por marcos tecnicos.
+- O time acompanha pendencias, separacao e expedicao.
+- O painel precisa reduzir atrasos e melhorar a leitura dos KPIs.
+- A documentacao sera mantida em Markdown com Mermaid.
 
 ## Saida esperada
-1. Etapas do projeto.
-2. Principais riscos.
-3. Dependencias tecnicas.
-4. Indicadores de sucesso.
+1. Hipoteses de melhoria do fluxo.
+2. KPIs recomendados para o dashboard.
+3. Riscos tecnicos e operacionais.
+4. Proximos passos por prioridade.

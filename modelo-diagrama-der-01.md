@@ -1,8 +1,8 @@
 erDiagram
     CLIENTES ||--o{ PEDIDOS : realiza
+    PEDIDOS ||--|| TRANSPORTADORAS : utiliza
     PEDIDOS ||--|{ ITENS_PEDIDO : contem
     PRODUTOS ||--o{ ITENS_PEDIDO : compoe
-    CATEGORIAS ||--o{ PRODUTOS : organiza
 
     CLIENTES {
       int id
@@ -12,12 +12,15 @@ erDiagram
 
     PEDIDOS {
       int id
-      date criado_em
+      string numero
+      int transportadora_id
+      string status
       decimal total
+      datetime atualizado_em
     }
 
-    PRODUTOS {
+    TRANSPORTADORAS {
       int id
       string nome
-      decimal preco
+      int prazo_dias
     }

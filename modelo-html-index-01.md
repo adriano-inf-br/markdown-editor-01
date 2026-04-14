@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landing Page</title>
+  <title>Console Markdown Enterprise</title>
 </head>
 <body>
   <header>
     <h1>Console Markdown Enterprise</h1>
-    <p>Transforme prototipos em documentacao navegavel.</p>
+    <p>Documente processos, fluxos e snippets de operacao em um unico lugar.</p>
   </header>
 
   <main>
     <section>
-      <h2>Recursos</h2>
+      <h2>Casos de uso</h2>
       <ul>
-        <li>Editor Markdown com Mermaid</li>
-        <li>Exportacao HTML standalone</li>
-        <li>Persistencia local no navegador</li>
+        <li>Playbooks de atendimento</li>
+        <li>Fluxos com Mermaid</li>
+        <li>Snippets tecnicos por stack</li>
       </ul>
     </section>
   </main>

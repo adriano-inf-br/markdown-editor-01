@@ -1,17 +1,17 @@
 <template>
   <main>
-    <h1>Pedidos</h1>
+    <h1>Painel de Pedidos</h1>
     <Suspense>
       <template #default>
-        <PedidoLista />
+        <ListaPedidos />
       </template>
       <template #fallback>
-        <p>Carregando pedidos...</p>
+        <p>Carregando operacao...</p>
       </template>
     </Suspense>
   </main>
 </template>
 
 <script setup>
-import PedidoLista from './PedidoLista.vue';
+import ListaPedidos from './ListaPedidos.vue';
 </script>

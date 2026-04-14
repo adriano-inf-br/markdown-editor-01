@@ -1,8 +1,8 @@
 SELECT
-  id,
-  nome,
-  preco,
-  estoque
-FROM produtos
-WHERE estoque > 0
-ORDER BY preco DESC;
+  numero,
+  cliente_nome,
+  status,
+  total
+FROM pedidos
+WHERE status IN ('pendente', 'separacao')
+ORDER BY criado_em DESC;

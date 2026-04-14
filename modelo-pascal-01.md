@@ -1,17 +1,14 @@
-program MediaNotas;
+program ResumoOperacao;
 
 var
-  nota1, nota2, media: Real;
+  pendentes, separacao, enviados: Integer;
 
 begin
-  nota1 := 8.5;
-  nota2 := 7.0;
-  media := (nota1 + nota2) / 2;
+  pendentes := 12;
+  separacao := 5;
+  enviados := 21;
 
-  Writeln('Media final: ', media:0:2);
-
-  if media >= 7.0 then
-    Writeln('Situacao: aprovado')
-  else
-    Writeln('Situacao: recuperacao');
+  Writeln('Pedidos pendentes: ', pendentes);
+  Writeln('Pedidos em separacao: ', separacao);
+  Writeln('Pedidos enviados: ', enviados);
 end.

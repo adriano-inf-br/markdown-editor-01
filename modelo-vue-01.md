@@ -1,30 +1,33 @@
 <template>
-  <section class="dashboard-card">
-    <h2>{{ titulo }}</h2>
-    <p>{{ descricao }}</p>
-    <button @click="incrementar">Cliques: {{ contador }}</button>
+  <section class="card-pedido">
+    <h2>Pedido #{{ pedido.numero }}</h2>
+    <p>Cliente: {{ pedido.cliente }}</p>
+    <p>Status: {{ pedido.status }}</p>
+    <button @click="marcarComoEnviado">Marcar como enviado</button>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'DashboardCard',
+  name: 'CardPedido',
   data() {
     return {
-      titulo: 'Resumo do dia',
-      descricao: 'Acompanhe os eventos em tempo real.',
-      contador: 0
+      pedido: {
+        numero: 1024,
+        cliente: 'Ana Costa',
+        status: 'separacao'
+      }
     };
   },
   methods: {
-    incrementar() {
-      this.contador += 1;
+    marcarComoEnviado() {
+      this.pedido.status = 'enviado';
     }
   }
 };
 </script>
 
 <style scoped>
-.dashboard-card { padding: 1rem; border-radius: 1rem; background: #f4f6fa; }
+.card-pedido { padding: 1rem; border-radius: 1rem; background: #f4f6fa; }
 button { margin-top: 1rem; }
 </style>

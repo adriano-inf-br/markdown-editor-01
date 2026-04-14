@@ -1,14 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 int main() {
-    std::vector<int> pedidos = {12, 18, 25, 30};
-    int soma = 0;
+    std::vector<std::string> status = {"pendente", "separacao", "enviado"};
 
-    for (int quantidade : pedidos) {
-        soma += quantidade;
+    for (const auto& item : status) {
+        std::cout << "Status monitorado: " << item << std::endl;
     }
 
-    std::cout << "Itens processados: " << soma << std::endl;
     return 0;
 }
