@@ -2,6 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="pragma" content="no-cache">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Console Markdown Enterprise - Corrigido</title>
   <link rel="icon" type="image/png" href="./favicon.png">
@@ -602,7 +605,7 @@
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
-                <el-button round size="small" @click="inserirHTML">HTML #8</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML #101</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -891,7 +894,7 @@ function makeMd() {
     mermaid.initialize({
       startOnLoad: true,
       securityLevel: 'loose',
-      theme: 'dark',
+      theme: 'light',
       flowchart: { useMaxWidth: true, htmlLabels: true }
     });
 
@@ -1261,7 +1264,7 @@ function makeMd() {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.css" />
   <style>
     body{margin:0;padding:24px;font-family:Inter,Arial,sans-serif;background:#0b1020;color:#edf2ff}
     .documento{max-width:1000px;margin:0 auto;background:#121a2f;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
@@ -1298,7 +1301,7 @@ function makeMd() {
 
     function escapeAttr(str){ return encodeURIComponent(str); }
 
-    mermaid.initialize({startOnLoad:false,securityLevel:'loose',theme:'dark',flowchart:{useMaxWidth:true,htmlLabels:true}});
+    mermaid.initialize({startOnLoad:false,securityLevel:'loose',theme:'light',flowchart:{useMaxWidth:true,htmlLabels:true}});
 
     const md = window.markdownit({
       html:true,breaks:true,linkify:true,typographer:true,
