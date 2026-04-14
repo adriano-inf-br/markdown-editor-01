@@ -4,9 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Console Markdown Enterprise - Corrigido</title>
-
+  <link rel="icon" type="image/png" href="./favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css" />
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css" /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.css" />
+
+  <!-- https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/styles/github-dark.min.css -->
+
+
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -596,7 +602,7 @@
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
-                <el-button round size="small" @click="inserirHTML">HTML #6</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML #8</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -668,7 +674,8 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="https://unpkg.com/element-plus"></script>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/highlight.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/highlight.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
   <!-- Carregar linguagens highlight.js -->
   <script>
     // Lista de linguagens a carregar
