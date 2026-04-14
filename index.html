@@ -1008,6 +1008,38 @@ function makeMd() {
             this.focarEditor(s, e);
           });
         },
+
+
+        /**
+         * Lê um arquivo .md, escapa corretamente para string JS (\n, aspas simples e duplas),
+         * e insere no cursor do editor. Usado para inserir HTML, CSS, JS, etc.
+         * Pode ser usado por outros métodos para inserir modelos.
+         */
+        async inserirNoCursor2(arquivoMD) {
+          const nomeArquivo = arquivoMD.endsWith('.md') ? arquivoMD : arquivoMD + '.md';
+          try {
+            const resposta = await fetch(nomeArquivo);
+            if (!resposta.ok) throw new Error('Arquivo não encontrado');
+            let conteudo = await resposta.text();
+            // Escapa aspas e \n para string JS
+            conteudo = conteudo
+              .replace(/\\/g, '\\\\') // barra invertida
+              .replace(/\r/g, '')
+              .replace(/\n/g, '\\n')
+              .replace(/"/g, '\\"')
+              .replace(/'/g, "\\'");
+            // Insere como bloco de código markdown
+            const bloco = `\n\n\`\`\`html\n${conteudo}\n\`\`\`\n`;
+            this.inserirNoCursor(bloco, '', '');
+            this.status.mensagem = 'Modelo inserido com sucesso.';
+          } catch (e) {
+            console.error(e);
+            this.status.mensagem = 'Erro ao inserir modelo: ' + e.message;
+            ElementPlus.ElMessage.error('Erro ao inserir modelo: ' + e.message);
+          }
+        },
+
+
         envolverSelecao(before, after) { this.inserirNoCursor(before, after, 'texto'); },
         inserirTitulo(level) { this.inserirNoCursor('\n' + '#'.repeat(level) + ' ', '', 'Título'); },
         inserirLista(prefix) { this.inserirNoCursor('\n' + prefix, '', 'Item'); },
@@ -1017,98 +1049,101 @@ function makeMd() {
           this.inserirNoCursor('\n```mermaid\nsequenceDiagram\n    participant A as Cliente\n    participant B as API\n    A->>B: Requisição\n    B-->>A: Resposta\n```\n');
         },
 
+        inserirXXXXX() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
         inserirHTML() {
-          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-html-01.md');
         },
         inserirCSS() {
-          this.inserirNoCursor('\n```css\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-css-01.md');
         },
         inserirJS() {
-          this.inserirNoCursor('\n```js\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-js-01.md');
         },
         inserirHtmlIndex() {
-          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-html-index-01.md');
         },
         inserirHtmlFirstMobile() {
-          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-first-mobile-01.md');
         },
         inserirHtmlPainelAdmin() {
-          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-painel-admin-01.md');
         },
         inserirPHP() {
-          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-php-01.md');
         },
         inserirPhpAnsi() {
-          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-php-ansi-01.md');
         },
         inserirPhpMVC() {
-          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-php-mvc-01.md');
         },
         inserirPhpClasse() {
-          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-php-classe-01.md');
         },
         inserirVue() {
-          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-vue-01.md');
         },
         inserirVue2() {
-          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-????-01.md');
         },
         inserirVue3() {
-          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-????-01.md');
         },
         inserirRuby() {
-          this.inserirNoCursor('\n```ruby\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-ruby-01.md');
         },
         inserirPascal() {
-          this.inserirNoCursor('\n```pascal\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-pascal-01.md');
         },
         inserirCAnsi() {
-          this.inserirNoCursor('\n```c\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-c-ansi-01.md');
         },
         inserirCSharp() {
-          this.inserirNoCursor('\n```csharp\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-c-ansi-01.md');
         },
         inserirCPlus() {
-          this.inserirNoCursor('\n```cplus\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-c-ansi-01.md');
         },
         inserirSqlCreate() {
-          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-sql-create-01.md');
         },
         inserirSqlSelect() {
-          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-sql-select-01.md');
         },
         inserirSqlInsert() {
-          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-sql-insert-01.md');
         },
         inserirSqlUpdate() {
-          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-sql-update-01.md');
         },
         inserirSqlDelete() {
-          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-sql-delete-01.md');
         },
         inserirSqlJoin() {
-          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-c-ansi-01.md');
         },
         inserirDiagramaGantt() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-diagrama-gantt-01.md');
         },
         inserirDiagramaKamban() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-diagrama-kamban-01.md');
         },
         inserirDiagramaClasses() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-c-ansi-01.md');
         },
         inserirDiagramaSequecia() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-c-ansi-01.md');
         },
         inserirDiagramaDER() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-diagrama-der-01.md');
         },
         inserirGraficoPizza() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-grafico-pizza-01.md');
         },
         inserirX() {
-          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+          this.inserirNoCursor2('modelo-c-ansi-01.md');
         },
 
 
