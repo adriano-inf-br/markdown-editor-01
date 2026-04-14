@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Console Markdown Enterprise - Corrigido</title>
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Console Markdown Enterprise - Corrigido</title>
   <link rel="icon" type="image/png" href="./favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.css" />
@@ -61,14 +62,14 @@
       place-items: center;
       background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: #fff;
-          border: 1px solid var(--line);
+      border: 1px solid var(--line);
       font-weight: 800;
       flex-shrink: 0;
     }
 
     .brand h1 {
-          background: var(--primary);
-          color: #fff;
+      background: var(--primary);
+      color: #fff;
       margin: 0;
       font-size: 1rem;
       line-height: 1.15;
@@ -82,7 +83,7 @@
     }
 
     .side-section {
-          background: var(--primary-2);
+      background: var(--primary-2);
       border: 1px solid var(--line);
       border-radius: 18px;
       background: rgba(255,255,255,.03);
@@ -419,8 +420,13 @@
       text-decoration: underline;
     }
 
+    .el-button+.el-button {
+      margin-left: 0px;
+    }
+
     @media (min-width: 980px) {
       .layout {
+        display: grid;
         grid-template-columns: 320px 1fr;
         align-items: start;
       }
@@ -451,7 +457,7 @@
         <div class="brand">
           <div class="brand-badge">MD</div>
           <div>
-            <h1>Console Markdown + Mermaid</h1>
+            <h1>Gerador Markdown + Mermaid</h1>
             <p>Versão corrigida para evitar reprocessar SVG do Mermaid como texto.</p>
           </div>
         </div>
@@ -509,13 +515,13 @@
           <div class="side-title">Exemplos Markdown Mermaid</div>
           <div style="display:grid; gap:10px;">
             <ul class="markdown-list">
-              <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-01.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 01</a></li>
-              <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-02.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 02</a></li>
-              <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-03.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 03</a></li>
+              <li><a href="./exemplo-markdown-01.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 01</a></li>
+              <li><a href="./exemplo-markdown-02.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 02</a></li>
+              <li><a href="./exemplo-markdown-03.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 03</a></li>
               <li>-</li>
-              <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-01.html" target="_blank" rel="noopener noreferrer">Exemplo 01</a></li>
-              <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-02.html" target="_blank" rel="noopener noreferrer">Exemplo 02</a></li>
-              <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-03.html" target="_blank" rel="noopener noreferrer">Exemplo 03</a></li>
+              <li><a href="./exemplo-markdown-01.html" target="_blank" rel="noopener noreferrer">Exemplo 01</a></li>
+              <li><a href="./exemplo-markdown-02.html" target="_blank" rel="noopener noreferrer">Exemplo 02</a></li>
+              <li><a href="./exemplo-markdown-03.html" target="_blank" rel="noopener noreferrer">Exemplo 03</a></li>
             </ul>
           </div>
         </section>
@@ -585,7 +591,7 @@
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
-                <el-button round size="small" @click="inserirHTML">HTML #103</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML #105</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -658,6 +664,7 @@
   <script src="https://unpkg.com/element-plus"></script>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+
   <!-- Carregar linguagens highlight.js -->
   <script>
     // Lista de linguagens a carregar
@@ -693,7 +700,6 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
-  
   <script>
     const STORAGE_KEY = 'console_markdown_mermaid_enterprise_fixed_v1';
 
@@ -782,7 +788,6 @@ public function index()
         .replace(/\$\{/g, '\\${');
     }
 
-    
     function normalizeLang(lang) {
       const raw = (lang || '').trim().toLowerCase();
       const map = {
@@ -823,7 +828,7 @@ public function index()
       return map[raw] || raw;
     }
 
-function makeMd() {
+    function makeMd() {
       const md = window.markdownit({
         html: true,
         breaks: true,
@@ -1015,7 +1020,6 @@ function makeMd() {
           });
         },
 
-
         /**
          * Lê um arquivo .md, escapa corretamente para string JS (\n, aspas simples e duplas),
          * e insere no cursor do editor. Usado para inserir HTML, CSS, JS, etc.
@@ -1038,7 +1042,6 @@ function makeMd() {
             ElementPlus.ElMessage.error('Erro ao inserir modelo: ' + e.message);
           }
         },
-
 
         envolverSelecao(before, after) { this.inserirNoCursor(before, after, 'texto'); },
         inserirTitulo(level) { this.inserirNoCursor('\n' + '#'.repeat(level) + ' ', '', 'Título'); },
@@ -1146,9 +1149,6 @@ function makeMd() {
           this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
 
-
-        
-        
         inserirSeparador() { this.inserirNoCursor('\n---\n'); },
 
         criarDocumento() {
