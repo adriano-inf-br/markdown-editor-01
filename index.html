@@ -685,6 +685,39 @@
   <script src="https://unpkg.com/element-plus"></script>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/highlight.min.js"></script>
+  <!-- Carregar linguagens highlight.js -->
+  <script>
+    // Lista de linguagens a carregar
+    const HL_LANGS = [
+      'javascript','typescript','python','ruby','bash','powershell','dos','html','xml','yaml','markdown','php','sql','dockerfile','delphi','objectivec','csharp'
+    ];
+    // Mapear aliases extras
+    const HL_ALIASES = {
+      js: 'javascript', node: 'javascript', mjs: 'javascript', cjs: 'javascript',
+      ts: 'typescript', py: 'python', rb: 'ruby', sh: 'bash', shell: 'bash', zsh: 'bash',
+      ps1: 'powershell', cmd: 'dos', htm: 'html', html5: 'html', xhtml: 'xml',
+      yml: 'yaml', md: 'markdown', vue: 'xml', blade: 'php', laravel: 'php',
+      mysql: 'sql', mariadb: 'sql', postgres: 'sql', pgsql: 'sql', compose: 'yaml', dotenv: 'bash', env: 'bash', pas: 'delphi', pascal: 'delphi', objc: 'objectivec', 'c#': 'csharp', cs: 'csharp'
+    };
+    // Carregar cada linguagem
+    (async () => {
+      for (const lang of HL_LANGS) {
+        try {
+          await import(`https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/es/languages/${lang}.min.js`).then(m => {
+            if (window.hljs && m.default) window.hljs.registerLanguage(lang, m.default);
+          });
+        } catch(e) { /* ignore */ }
+      }
+      // Mapear aliases
+      if (window.hljs) {
+        for (const [alias, base] of Object.entries(HL_ALIASES)) {
+          if (window.hljs.getLanguage(base)) {
+            window.hljs.registerLanguage(alias, window.hljs.getLanguage(base));
+          }
+        }
+      }
+    })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
@@ -755,7 +788,7 @@ public function index()
       return encodeURIComponent(str);
     }
 
-    function normalizeLang(lang) {
+    function normalizeLang2(lang) {
       const raw = (lang || '').trim().toLowerCase();
       const map = {
         'js': 'javascript','node': 'javascript','mjs': 'javascript','cjs': 'javascript',
