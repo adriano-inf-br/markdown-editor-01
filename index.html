@@ -600,7 +600,7 @@
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
 
-                <el-button round size="small" @click="inserirHTML">HTML #</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML #1</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -1054,8 +1054,9 @@ function makeMd() {
             const resposta = await fetch(nomeArquivo);
             if (!resposta.ok) throw new Error('Arquivo não encontrado');
             let conteudo = await resposta.text();
-            // Não faz nenhum escape, apenas insere o conteúdo puro
-            const bloco = `\n\n\`\`\`html\n${conteudo}\n\`\`\`\n`;
+            // Remove blocos markdown já existentes para evitar duplicidade
+            conteudo = conteudo.replace(/^```html\s*/i, '').replace(/```\s*$/i, '');
+            const bloco = `\n\n\`\`\`html\n${conteudo.trim()}\n\`\`\`\n`;
             this.inserirNoCursor(bloco, '', '');
             this.status.mensagem = 'Modelo inserido com sucesso.';
           } catch (e) {
