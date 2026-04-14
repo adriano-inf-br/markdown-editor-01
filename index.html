@@ -414,6 +414,25 @@
       padding: 14px;
     }
 
+    
+    ul.markdown-list {
+      list-style: none;
+      padding: 0;
+    }
+    .markdown-list li {
+      margin-bottom: 8px;
+    }
+    .markdown-list a {
+      text-decoration: none;
+      color: #0366d6;
+      font-family: monospace;
+    }
+    .markdown-list a:hover {
+      text-decoration: underline;
+    }
+
+
+    
     @media (min-width: 980px) {
       .layout {
         grid-template-columns: 320px 1fr;
@@ -499,6 +518,18 @@
             <el-button type="danger" plain round @click="removerDocumento" :disabled="documentos.length <= 1">Excluir</el-button>
           </div>
         </section>
+
+        <section class="side-section" v-if="documentoAtual">
+          <div class="side-title">Ações</div>
+          <div style="display:grid; gap:10px;">
+            <ul class="markdown-list">
+              <li><a href="...">exemplo-markdown-01.md</a></li>
+              <li><a href="...">exemplo-markdown-02.md</a></li>
+              <li><a href="...">exemplo-markdown-03.md</a></li>
+            </ul>
+          </div>
+        </section>
+        
       </aside>
 
       <main class="main">
@@ -599,11 +630,6 @@
         </section>
         <section>
 
-          <ul>
-            <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-01.md"> </a> </li>
-            <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-01.md"> </a></li>
-            <li><a href="https://adriano-inf-br.github.io/markdown-editor-01/exemplo-markdown-01.md"> </a></li>
-          </ul>
           
           
           
