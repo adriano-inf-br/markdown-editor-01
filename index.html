@@ -1021,14 +1021,7 @@ function makeMd() {
             const resposta = await fetch(nomeArquivo);
             if (!resposta.ok) throw new Error('Arquivo não encontrado');
             let conteudo = await resposta.text();
-            // Escapa aspas e \n para string JS
-            conteudo = conteudo
-              .replace(/\\/g, '\\\\') // barra invertida
-              .replace(/\r/g, '')
-              .replace(/\n/g, '\\n')
-              .replace(/"/g, '\\"')
-              .replace(/'/g, "\\'");
-            // Insere como bloco de código markdown
+            // Não faz nenhum escape, apenas insere o conteúdo puro
             const bloco = `\n\n\`\`\`html\n${conteudo}\n\`\`\`\n`;
             this.inserirNoCursor(bloco, '', '');
             this.status.mensagem = 'Modelo inserido com sucesso.';
