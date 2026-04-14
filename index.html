@@ -414,7 +414,6 @@
       padding: 14px;
     }
 
-    
     ul.markdown-list {
       list-style: none;
       padding: 0;
@@ -431,8 +430,6 @@
       text-decoration: underline;
     }
 
-
-    
     @media (min-width: 980px) {
       .layout {
         grid-template-columns: 320px 1fr;
@@ -599,8 +596,7 @@
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
-
-                <el-button round size="small" @click="inserirHTML">HTML #1</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML #3</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -629,14 +625,7 @@
                 <el-button round size="small" @click="inserirDiagramaSequecia">Sequência</el-button>
                 <el-button round size="small" @click="inserirDiagramaDER">DER</el-button>
                 <el-button round size="small" @click="inserirGraficoPizza">Pizza</el-button>
-
-
-
-
-                
-                <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
-                
-                
+                <el-button round size="small" @click="inserirX">XXX</el-button>
               </div>
             </div>
 
@@ -671,11 +660,6 @@
           </article>
         </section>
         <section>
-
-          
-          
-          
-          
         </section>
       </main>
     </div>
@@ -1048,7 +1032,7 @@ function makeMd() {
          * e insere no cursor do editor. Usado para inserir HTML, CSS, JS, etc.
          * Pode ser usado por outros métodos para inserir modelos.
          */
-        async inserirNoCursor2(arquivoMD) {
+        async inserirArquivoNoCursor(arquivoMD) {
           const nomeArquivo = arquivoMD.endsWith('.md') ? arquivoMD : arquivoMD + '.md';
           try {
             const resposta = await fetch(nomeArquivo);
@@ -1080,97 +1064,97 @@ function makeMd() {
           this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
         },
         inserirHTML() {
-          this.inserirNoCursor2('modelo-html-01.md');
+          this.inserirArquivoNoCursor('modelo-html-01.md');
         },
         inserirCSS() {
-          this.inserirNoCursor2('modelo-css-01.md');
+          this.inserirArquivoNoCursor('modelo-css-01.md');
         },
         inserirJS() {
-          this.inserirNoCursor2('modelo-js-01.md');
+          this.inserirArquivoNoCursor('modelo-js-01.md');
         },
         inserirHtmlIndex() {
-          this.inserirNoCursor2('modelo-html-index-01.md');
+          this.inserirArquivoNoCursor('modelo-html-index-01.md');
         },
         inserirHtmlFirstMobile() {
-          this.inserirNoCursor2('modelo-first-mobile-01.md');
+          this.inserirArquivoNoCursor('modelo-first-mobile-01.md');
         },
         inserirHtmlPainelAdmin() {
-          this.inserirNoCursor2('modelo-painel-admin-01.md');
+          this.inserirArquivoNoCursor('modelo-painel-admin-01.md');
         },
         inserirPHP() {
-          this.inserirNoCursor2('modelo-php-01.md');
+          this.inserirArquivoNoCursor('modelo-php-01.md');
         },
         inserirPhpAnsi() {
-          this.inserirNoCursor2('modelo-php-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-php-ansi-01.md');
         },
         inserirPhpMVC() {
-          this.inserirNoCursor2('modelo-php-mvc-01.md');
+          this.inserirArquivoNoCursor('modelo-php-mvc-01.md');
         },
         inserirPhpClasse() {
-          this.inserirNoCursor2('modelo-php-classe-01.md');
+          this.inserirArquivoNoCursor('modelo-php-classe-01.md');
         },
         inserirVue() {
-          this.inserirNoCursor2('modelo-vue-01.md');
+          this.inserirArquivoNoCursor('modelo-vue-01.md');
         },
         inserirVue2() {
-          this.inserirNoCursor2('modelo-????-01.md');
+          this.inserirArquivoNoCursor('modelo-????-01.md');
         },
         inserirVue3() {
-          this.inserirNoCursor2('modelo-????-01.md');
+          this.inserirArquivoNoCursor('modelo-????-01.md');
         },
         inserirRuby() {
-          this.inserirNoCursor2('modelo-ruby-01.md');
+          this.inserirArquivoNoCursor('modelo-ruby-01.md');
         },
         inserirPascal() {
-          this.inserirNoCursor2('modelo-pascal-01.md');
+          this.inserirArquivoNoCursor('modelo-pascal-01.md');
         },
         inserirCAnsi() {
-          this.inserirNoCursor2('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
         inserirCSharp() {
-          this.inserirNoCursor2('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
         inserirCPlus() {
-          this.inserirNoCursor2('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
         inserirSqlCreate() {
-          this.inserirNoCursor2('modelo-sql-create-01.md');
+          this.inserirArquivoNoCursor('modelo-sql-create-01.md');
         },
         inserirSqlSelect() {
-          this.inserirNoCursor2('modelo-sql-select-01.md');
+          this.inserirArquivoNoCursor('modelo-sql-select-01.md');
         },
         inserirSqlInsert() {
-          this.inserirNoCursor2('modelo-sql-insert-01.md');
+          this.inserirArquivoNoCursor('modelo-sql-insert-01.md');
         },
         inserirSqlUpdate() {
-          this.inserirNoCursor2('modelo-sql-update-01.md');
+          this.inserirArquivoNoCursor('modelo-sql-update-01.md');
         },
         inserirSqlDelete() {
-          this.inserirNoCursor2('modelo-sql-delete-01.md');
+          this.inserirArquivoNoCursor('modelo-sql-delete-01.md');
         },
         inserirSqlJoin() {
-          this.inserirNoCursor2('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
         inserirDiagramaGantt() {
-          this.inserirNoCursor2('modelo-diagrama-gantt-01.md');
+          this.inserirArquivoNoCursor('modelo-diagrama-gantt-01.md');
         },
         inserirDiagramaKamban() {
-          this.inserirNoCursor2('modelo-diagrama-kamban-01.md');
+          this.inserirArquivoNoCursor('modelo-diagrama-kamban-01.md');
         },
         inserirDiagramaClasses() {
-          this.inserirNoCursor2('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
         inserirDiagramaSequecia() {
-          this.inserirNoCursor2('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
         inserirDiagramaDER() {
-          this.inserirNoCursor2('modelo-diagrama-der-01.md');
+          this.inserirArquivoNoCursor('modelo-diagrama-der-01.md');
         },
         inserirGraficoPizza() {
-          this.inserirNoCursor2('modelo-grafico-pizza-01.md');
+          this.inserirArquivoNoCursor('modelo-grafico-pizza-01.md');
         },
         inserirX() {
-          this.inserirNoCursor2('modelo-c-ansi-01.md');
+          this.inserirArquivoNoCursor('modelo-c-ansi-01.md');
         },
 
 
