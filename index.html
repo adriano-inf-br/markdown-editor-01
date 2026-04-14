@@ -600,24 +600,40 @@
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
 
-                <el-button round size="small" @click="inserirIndex">Mermaid</el-button>
-                <el-button round size="small" @click="inserirHTML">Mermaid</el-button>
-                <el-button round size="small" @click="inserirCSS">Mermaid</el-button>
-                <el-button round size="small" @click="inserirJS">Mermaid</el-button>
-                <el-button round size="small" @click="inserirPHP">Mermaid</el-button>
-                <el-button round size="small" @click="inserirVue">Mermaid</el-button>
-                <el-button round size="small" @click="inserirRuby">Mermaid</el-button>
-                <el-button round size="small" @click="inserirPascal">Mermaid</el-button>
-                <el-button round size="small" @click="inserirCAnsi">Mermaid</el-button>
-                <el-button round size="small" @click="inserirCSharp">Mermaid</el-button>
-                <el-button round size="small" @click="inserirSqlCreate">Create</el-button>
-                <el-button round size="small" @click="inserirSqlSelect">Select</el-button>
-                <el-button round size="small" @click="inserirSqlInsert">Insert</el-button>
-                <el-button round size="small" @click="inserirSqlUpdate">Update</el-button>
-                <el-button round size="small" @click="inserirSqlDelete">Delete</el-button>
-                <el-button round size="small" @click="inserirSqlJoin">Join</el-button>
-                <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
-                <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML</el-button>
+                <el-button round size="small" @click="inserirCSS">CSS</el-button>
+                <el-button round size="small" @click="inserirJS">JS</el-button>
+                <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
+                <el-button round size="small" @click="inserirHtmlFirstMobile">Mobile First</el-button>
+                <el-button round size="small" @click="inserirHtmlPainelAdmin">Painel Admin</el-button>
+                <el-button round size="small" @click="inserirPHP">PHP</el-button>
+                <el-button round size="small" @click="inserirPhpAnsi">PHP 2</el-button>
+                <el-button round size="small" @click="inserirPhpMVC">MVC</el-button>
+                <el-button round size="small" @click="inserirPhpClasse">Classe</el-button>
+                <el-button round size="small" @click="inserirVue">Vue</el-button>
+                <el-button round size="small" @click="inserirVue2">Vue2</el-button>
+                <el-button round size="small" @click="inserirVue3">Vue3</el-button>
+                <el-button round size="small" @click="inserirRuby">Ruby</el-button>
+                <el-button round size="small" @click="inserirPascal">Pascal</el-button>
+                <el-button round size="small" @click="inserirCAnsi">C</el-button>
+                <el-button round size="small" @click="inserirCSharp">C#</el-button>
+                <el-button round size="small" @click="inserirCPlus">C++</el-button>
+                <el-button round size="small" @click="inserirSqlCreate">SQL Create</el-button>
+                <el-button round size="small" @click="inserirSqlSelect">SQL Select</el-button>
+                <el-button round size="small" @click="inserirSqlInsert">SQL Insert</el-button>
+                <el-button round size="small" @click="inserirSqlDelete">SQL Delete</el-button>
+                <el-button round size="small" @click="inserirSqlJoin">SQL Join</el-button>
+                <el-button round size="small" @click="inserirDiagramaGantt">Gantt</el-button>
+                <el-button round size="small" @click="inserirDiagramaKamban">Kamban</el-button>
+                <el-button round size="small" @click="inserirDiagramaClasses">Classe</el-button>
+                <el-button round size="small" @click="inserirDiagramaSequecia">Sequência</el-button>
+                <el-button round size="small" @click="inserirDiagramaDER">DER</el-button>
+                <el-button round size="small" @click="inserirGraficoPizza">Pizza</el-button>
+
+
+
+
+                
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 
                 
@@ -1000,6 +1016,104 @@ function makeMd() {
         inserirMermaid() {
           this.inserirNoCursor('\n```mermaid\nsequenceDiagram\n    participant A as Cliente\n    participant B as API\n    A->>B: Requisição\n    B-->>A: Resposta\n```\n');
         },
+
+        inserirHTML() {
+          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+        },
+        inserirCSS() {
+          this.inserirNoCursor('\n```css\nXXX\n\n```\n');
+        },
+        inserirJS() {
+          this.inserirNoCursor('\n```js\nXXX\n\n```\n');
+        },
+        inserirHtmlIndex() {
+          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+        },
+        inserirHtmlFirstMobile() {
+          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+        },
+        inserirHtmlPainelAdmin() {
+          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+        },
+        inserirPHP() {
+          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+        },
+        inserirPhpAnsi() {
+          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+        },
+        inserirPhpMVC() {
+          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+        },
+        inserirPhpClasse() {
+          this.inserirNoCursor('\n```php\nXXX\n\n```\n');
+        },
+        inserirVue() {
+          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+        },
+        inserirVue2() {
+          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+        },
+        inserirVue3() {
+          this.inserirNoCursor('\n```html\nXXX\n\n```\n');
+        },
+        inserirRuby() {
+          this.inserirNoCursor('\n```ruby\nXXX\n\n```\n');
+        },
+        inserirPascal() {
+          this.inserirNoCursor('\n```pascal\nXXX\n\n```\n');
+        },
+        inserirCAnsi() {
+          this.inserirNoCursor('\n```c\nXXX\n\n```\n');
+        },
+        inserirCSharp() {
+          this.inserirNoCursor('\n```csharp\nXXX\n\n```\n');
+        },
+        inserirCPlus() {
+          this.inserirNoCursor('\n```cplus\nXXX\n\n```\n');
+        },
+        inserirSqlCreate() {
+          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+        },
+        inserirSqlSelect() {
+          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+        },
+        inserirSqlInsert() {
+          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+        },
+        inserirSqlUpdate() {
+          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+        },
+        inserirSqlDelete() {
+          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+        },
+        inserirSqlJoin() {
+          this.inserirNoCursor('\n```slq\nXXX\n\n```\n');
+        },
+        inserirDiagramaGantt() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
+        inserirDiagramaKamban() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
+        inserirDiagramaClasses() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
+        inserirDiagramaSequecia() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
+        inserirDiagramaDER() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
+        inserirGraficoPizza() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
+        inserirX() {
+          this.inserirNoCursor('\n```mermaid\nXXX\n\n```\n');
+        },
+
+
+        
+        
         inserirSeparador() { this.inserirNoCursor('\n---\n'); },
 
         criarDocumento() {
