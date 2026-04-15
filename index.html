@@ -4,7 +4,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editor Markdown Enterprise (Versão 0.00.015)</title>
+  <title>Editor Markdown Enterprise (Versão 0.00.017)</title>
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
@@ -1243,7 +1243,7 @@
               <div class="side-title">Documentos</div>
               <div style="display:grid; gap:10px; margin-bottom:10px;">
                 <el-button type="primary" round aria-label="Criar novo documento" @click="criarDocumento">Novo documento</el-button>
-                <el-button round aria-label="Duplicar documento atual" @click="duplicarDocumento" :disabled="!documentoAtual">Duplicar atual</el-button>
+                <el-button round aria-label="Duplicar documento atual" @click="duplicarDocumento" :disabled="!documentoAtual">Duplicar Atual</el-button>
               </div>
               <div class="document-list" role="list" aria-label="Lista de documentos">
                 <button
@@ -1283,7 +1283,7 @@
             </section>
 
             <section class="side-section" v-if="documentoAtual">
-              <div class="side-title">Ações rápidas</div>
+              <div class="side-title">Ações Rápidas</div>
               <div style="display:grid; gap:10px;">
                 <el-button round aria-label="Renomear documento atual" @click="renomearDocumento">Renomear</el-button>
                 <el-button round aria-label="Copiar markdown do documento atual" @click="copiarMarkdown">Copiar Markdown</el-button>
@@ -1415,7 +1415,7 @@
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
                 <el-button round size="small" @click="inserirMermaid">Mermaid</el-button>
                 <el-button round size="small" @click="inserirSeparador">Linha</el-button>
-                <el-button round size="small" @click="inserirHTML">HTML #106</el-button>
+                <el-button round size="small" @click="inserirHTML">HTML</el-button>
                 <el-button round size="small" @click="inserirCSS">CSS</el-button>
                 <el-button round size="small" @click="inserirJS">JS</el-button>
                 <el-button round size="small" @click="inserirHtmlIndex">Index</el-button>
@@ -1458,11 +1458,11 @@
                 aria-describedby="editor-shortcuts-hint"
                 @input="aoEditar"
               ></textarea>
-              <span id="editor-shortcuts-hint" class="sr-only">Atalhos: Control ou Command mais S para salvar, Escape para fechar painéis móveis.</span>
+              <span id="editor-shortcuts-hint" class="sr-only">Atalhos: Control + S para salvar, ESC para fechar Painéis Móveis.</span>
             </div>
 
             <div class="footer-bar">
-              <span>Persistência local em JSON</span>
+              <span>Persistência Local em JSON</span>
               <span>{{ status.mensagem }}</span>
             </div>
           </article>
@@ -1818,17 +1818,17 @@ public function index()
         },
         sidebarButtonLabel() {
           if (this.ui.compactMobile) return this.ui.sidebarOpen ? 'Fechar' : 'Menu';
-          if (this.ui.isDesktop) return this.ui.sidebarOpen ? 'Ocultar painel' : 'Mostrar painel';
-          return this.ui.sidebarOpen ? 'Fechar menu' : 'Menu';
+          if (this.ui.isDesktop) return this.ui.sidebarOpen ? 'Ocultar Painel' : 'Mostrar Painel';
+          return this.ui.sidebarOpen ? 'Fechar Menu' : 'Menu';
         },
         previewButtonLabel() {
           if (this.ui.compactMobile) return this.ui.previewOpen ? 'Fechar' : 'Preview';
-          if (this.ui.isDesktop) return this.ui.previewOpen ? 'Ocultar preview' : 'Mostrar preview';
-          return this.ui.previewOpen ? 'Fechar preview' : 'Preview';
+          if (this.ui.isDesktop) return this.ui.previewOpen ? 'Ocultar Preview' : 'Mostrar Preview';
+          return this.ui.previewOpen ? 'Fechar Preview' : 'Preview';
         },
         toolbarButtonLabel() {
           if (this.ui.compactMobile) return this.ui.toolbarOpen ? 'Ocultar' : 'Barra';
-          return this.ui.toolbarOpen ? 'Ocultar barra' : 'Ferramentas';
+          return this.ui.toolbarOpen ? 'Ocultar Barra' : 'Ferramentas';
         },
         statusTone() {
           const msg = (this.status.mensagem || '').toLowerCase();
@@ -2037,7 +2037,7 @@ public function index()
         },
 
         envolverSelecao(before, after) { this.inserirNoCursor(before, after, 'texto'); },
-        inserirTitulo(level) { this.inserirNoCursor('\n' + '#'.repeat(level) + ' ', '', 'Título'); },
+        inserirTitulo(level) { this.inserirNoCursor('\n' + '#'.repeat(level) + ' ', '', 'Título '+level); },
         inserirLista(prefix) { this.inserirNoCursor('\n' + prefix, '', 'Item'); },
         inserirTabela() { this.inserirNoCursor('\n| Coluna A | Coluna B |\n|---|---|\n| Valor 1 | Valor 2 |\n'); },
         inserirCodigo() { this.inserirNoCursor('\n```js\n', '\n```\n', 'const exemplo = true;'); },
@@ -2155,7 +2155,7 @@ public function index()
           this.renderizarPreview();
           this.persistirTudo();
           if (!this.ui.isDesktop) this.ui.sidebarOpen = false;
-          ElementPlus.ElMessage.success('Novo documento criado.');
+          ElementPlus.ElMessage.success('Novo documento criado!');
         },
         duplicarDocumento() {
           if (!this.documentoAtual) return;
@@ -2169,7 +2169,7 @@ public function index()
           this.renderizarPreview();
           this.persistirTudo();
           if (!this.ui.isDesktop) this.ui.sidebarOpen = false;
-          ElementPlus.ElMessage.success('Documento duplicado.');
+          ElementPlus.ElMessage.success('Documento duplicado!');
         },
         selecionarDocumento(id) {
           this.estado.documentoIdAtual = id;
@@ -2189,7 +2189,7 @@ public function index()
             this.documentoAtual.nome = val;
             this.documentoAtual.atualizadoEm = new Date().toISOString();
             this.persistirTudo();
-            ElementPlus.ElMessage.success('Documento renomeado.');
+            ElementPlus.ElMessage.success('Documento renomeado!');
           }).catch(() => {});
         },
         removerDocumento() {
@@ -2205,15 +2205,15 @@ public function index()
             this.renderizarPreview();
             this.persistirTudo();
             if (!this.ui.isDesktop) this.ui.sidebarOpen = false;
-            ElementPlus.ElMessage.success('Documento excluído.');
+            ElementPlus.ElMessage.success('Documento excluído!');
           }).catch(() => {});
         },
         async copiarMarkdown() {
           try {
             await navigator.clipboard.writeText(this.markdownAtual || '');
-            ElementPlus.ElMessage.success('Markdown copiado.');
+            ElementPlus.ElMessage.success('Markdown copiado!');
           } catch {
-            ElementPlus.ElMessage.error('Não foi possível copiar.');
+            ElementPlus.ElMessage.error('Não foi possível copiar!');
           }
         },
         buildExportHtml() {
@@ -2233,14 +2233,14 @@ public function index()
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.css" />
   <style>
     :root{color-scheme:light}
-    body{margin:0;padding:24px;font-family:Inter,Arial,sans-serif;background:#eff4f9;color:#1f2937}
-    .documento{max-width:1000px;margin:0 auto;background:#fff;border:1px solid #d9e1ec;border-radius:24px;padding:32px;box-shadow:0 24px 60px rgba(15,23,42,.08)}
+    body{margin:0;padding:10px;font-family:Inter,Arial,sans-serif;background:#eff4f9;color:#1f2937}
+    .documento{max-width:1000px;margin:0 auto;background:#eee;border:1px solid #d9e1ec;border-radius:0px;padding:12px;box-shadow:0 24px 60px rgba(15,23,42,.08)}
     a{color:#1d4ed8;text-decoration:none} a:hover{text-decoration:underline}
     .conteudo> :first-child{margin-top:0}
     .conteudo h1,.conteudo h2,.conteudo h3,.conteudo h4,.conteudo h5,.conteudo h6{line-height:1.22;letter-spacing:-.03em;color:#0f172a}
     .conteudo p,.conteudo li,.conteudo blockquote,.conteudo td,.conteudo th{color:#334155;line-height:1.78}
     .conteudo pre{background:#f2f5fa;border:1px solid #d9e1ec;border-radius:18px;overflow:auto;margin:1rem 0;padding:0}
-    .conteudo pre code.hljs{display:block;padding:16px 18px}
+    .conteudo pre code.hljs{display:block;padding:15px 15px}
     .conteudo :not(pre)>code{background:#eef2f7;padding:.2em .45em;border-radius:8px;color:#0f172a}
     .conteudo table{width:100%;border-collapse:collapse;margin:1rem 0;display:block;overflow-x:auto;border:1px solid #d9e1ec;border-radius:18px;background:#fff}
     .conteudo th,.conteudo td{padding:12px 14px;border-bottom:1px solid #d9e1ec;text-align:left;white-space:nowrap}
