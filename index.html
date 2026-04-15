@@ -4,7 +4,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editor Markdown Enterprise (Versão 0.00.020)</title>
+  <title>Editor Markdown Enterprise (Versão 0.00.021)</title>
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
@@ -403,7 +403,6 @@
     .preview-wrap {
       flex: 1;
       min-height: 0;
-      /*overflow: auto;*/
       background: var(--surface);
       transition: background .2s ease;
       overscroll-behavior: contain;
@@ -432,7 +431,8 @@
     }
 
     .preview-wrap {
-      padding: 24px;
+      padding: 10px;
+      overflow: auto;
     }
 
     .preview-content {
@@ -908,7 +908,8 @@
       }
 
       .preview-wrap {
-        padding: 18px;
+        padding: 10px;
+        overflow: auto;
       }
     }
 
@@ -1021,7 +1022,8 @@
       }
 
       .preview-wrap {
-        padding: 16px;
+        padding: 10px;
+        overflow: auto;
       }
 
       .preview-content h1 {
