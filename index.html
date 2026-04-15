@@ -4,7 +4,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editor Markdown Enterprise (Versão 0.00.019)</title>
+  <title>Editor Markdown Enterprise (Versão 0.00.020)</title>
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
@@ -150,9 +150,10 @@
 
     .sidebar-scroll {
       flex: 1;
-      min-height: 0;
+      min-height: 10px;
+      max-height: 70%;
       overflow: auto;
-      padding: 0 20px 20px;
+      padding: 10px;
       display: grid;
       gap: 14px;
       overscroll-behavior: contain;
@@ -620,6 +621,7 @@
       background: var(--surface);
       box-shadow: var(--shadow-sm);
       padding: 16px;
+      margin-bottom: 10px;
     }
 
     .side-title {
