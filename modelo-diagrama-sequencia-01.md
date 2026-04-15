@@ -13,3 +13,5 @@ sequenceDiagram
     API->>Notificador: Publica evento PedidoEnviado
     Notificador-->>Painel: Atualiza timeline e badge
     API-->>Painel: 200 OK com payload consolidado
+
+    Note over Painel,Notificador: Exemplo avancado com evento assíncrono e sincronizacao da interface.

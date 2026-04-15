@@ -1,8 +1,8 @@
 # Documento Modelo 3
 
-## Kit de snippets do painel de pedidos
+## Nivel iniciante: leitura rapida dos snippets
 
-Exemplos curtos, mas mais proximos de um fluxo real: SLA, status, busca operacional e movimentacao do pedido.
+Exemplos curtos para entender o basico de status, consulta e fluxo do pedido.
 
 ---
 
@@ -10,7 +10,7 @@ Exemplos curtos, mas mais proximos de um fluxo real: SLA, status, busca operacio
 
 ```css
 .badge-status--pendente {
-  background: rgba(255, 176, 32, 0.16);
+  background: #fff4d6;
   color: #8a5b00;
 }
 ```
@@ -18,25 +18,22 @@ Exemplos curtos, mas mais proximos de um fluxo real: SLA, status, busca operacio
 ## JavaScript
 
 ```javascript
-const pedidosCriticos = pedidos.filter((pedido) => pedido.slaMinutos <= 30);
-console.log(`Pedidos criticos: ${pedidosCriticos.length}`);
+const pedidosPendentes = pedidos.filter((pedido) => pedido.status === 'pendente');
+console.log(`Pendentes: ${pedidosPendentes.length}`);
 ```
 
 ## SQL
 
 ```sql
-SELECT numero, cliente_nome, sla_minutos
+SELECT numero, cliente_nome
 FROM pedidos
-WHERE status = 'pendente'
-ORDER BY sla_minutos ASC;
+WHERE status = 'pendente';
 ```
 
 ## Mermaid
 
 ```mermaid
 flowchart LR
-    Captura --> Separacao
-    Separacao --> Expedicao
-    Expedicao --> Entrega
-    Expedicao --> Notificacao
+    Pedido --> Separacao
+    Separacao --> Envio
 ```

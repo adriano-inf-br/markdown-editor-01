@@ -1,10 +1,3 @@
-SELECT
-  numero,
-  cliente_nome,
-  status,
-  total,
-  sla_minutos
+SELECT numero, cliente_nome, status
 FROM pedidos
-WHERE status IN ('pendente', 'separacao')
-ORDER BY sla_minutos ASC, criado_em DESC
-LIMIT 20;
+WHERE status = 'pendente';

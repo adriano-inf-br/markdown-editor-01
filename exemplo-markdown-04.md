@@ -1,6 +1,6 @@
 # Documento Modelo 4
 
-## Pipeline do pedido ao envio
+## Nivel avancado: pipeline do pedido ao envio
 
 Documento enxuto para validar exportacao HTML, highlight de codigo e renderizacao Mermaid em um fluxo mais proximo de producao.
 
@@ -14,16 +14,17 @@ function atualizarStatus(PDO $pdo, string $numero, string $status): array
     $stmt = $pdo->prepare('UPDATE pedidos SET status = :status, atualizado_em = NOW() WHERE numero = :numero');
     $stmt->execute(['status' => $status, 'numero' => $numero]);
 
-    return ['numero' => $numero, 'status' => $status];
+    return ['numero' => $numero, 'status' => $status, 'evento' => 'PedidoAtualizado'];
 }
 ```
 
 ## Frontend
 
 ```javascript
-const aplicarAtualizacao = ({ numero, status }) => {
+const aplicarAtualizacao = ({ numero, status, evento }) => {
   const badge = document.querySelector(`[data-pedido="${numero}"] .badge-status`);
   if (badge) badge.textContent = status;
+  console.log(`Evento recebido: ${evento}`);
 };
 ```
 

@@ -14,4 +14,9 @@
 
 <script setup>
 import ListaPedidos from './ListaPedidos.vue';
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  console.log('Painel inicializado');
+});
 </script>

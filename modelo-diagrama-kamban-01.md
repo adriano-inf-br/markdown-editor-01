@@ -1,12 +1,8 @@
 kanban
-    title Fluxo do time de operacao
+    title Fluxo do pedido
     section Backlog
-      Mapear gargalos de atendimento[Owner: PO]
-      Revisar regras de expedicao[Owner: Operacoes]
+      Novo pedido
     section Em andamento
-      Implementar painel de pedidos[Owner: Frontend]
-      Sincronizar status no backend[Owner: Backend]
-    section Validacao
-      Testar SLA de separacao[Owner: QA]
+      Separacao
     section Concluido
-      Publicar documentacao base[Owner: Tech Writer]
+      Enviado

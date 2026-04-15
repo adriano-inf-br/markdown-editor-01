@@ -12,3 +12,5 @@ CREATE TABLE pedidos (
   CONSTRAINT fk_pedidos_transportadora
     FOREIGN KEY (transportadora_id) REFERENCES transportadoras(id)
 );
+
+-- Estrutura pensada para dashboard operacional e monitoramento de SLA.
