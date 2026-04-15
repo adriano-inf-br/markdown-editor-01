@@ -1,3 +1,2 @@
-```html
-<p> modelo-sql-delete-01.md </p>
-```
+DELETE FROM pedidos
+WHERE numero = 'PED-1026';

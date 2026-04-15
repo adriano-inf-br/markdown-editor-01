@@ -1,3 +1,3 @@
-```html
-<p> modelo-grafico-pizza-01.md </p>
-```
+pie title Pedidos por status
+    "Pendentes" : 12
+    "Enviados" : 21

@@ -1,13 +1,39 @@
 # Documento Modelo 3
 
-## Gráficos e Diagramas com Markdown e Mermaid
+## Nivel iniciante: leitura rapida dos snippets
 
-Exemplos de gráficos e diagramas do dia a dia da engenharia/arquitetura de sistemas, analise de negócio, Gestão de Projetos e SCRUM.
+Exemplos curtos para entender o basico de status, consulta e fluxo do pedido.
 
 ---
 
-## 1. Lorem Ipsum ...
+## CSS
 
-# Titulo 1
+```css
+.badge-status--pendente {
+  background: #fff4d6;
+  color: #8a5b00;
+}
+```
 
-# Titulo 2
+## JavaScript
+
+```javascript
+const pedidosPendentes = pedidos.filter((pedido) => pedido.status === 'pendente');
+console.log(`Pendentes: ${pedidosPendentes.length}`);
+```
+
+## SQL
+
+```sql
+SELECT numero, cliente_nome
+FROM pedidos
+WHERE status = 'pendente';
+```
+
+## Mermaid
+
+```mermaid
+flowchart LR
+    Pedido --> Separacao
+    Separacao --> Envio
+```

@@ -1,3 +1,3 @@
-```html
-<p> modelo-sql-select-01.md </p>
-```
+SELECT numero, cliente_nome, status
+FROM pedidos
+WHERE status = 'pendente';

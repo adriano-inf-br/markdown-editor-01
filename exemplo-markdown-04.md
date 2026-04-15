@@ -1,14 +1,49 @@
 # Documento Modelo 4
 
-## Gráficos e Diagramas com Markdown e Mermaid
+## Nivel avancado: pipeline do pedido ao envio
 
-Exemplos de gráficos e diagramas do dia a dia da engenharia/arquitetura de sistemas, analise de negócio, Gestão de Projetos e SCRUM.
+Documento enxuto para validar exportacao HTML, highlight de codigo e renderizacao Mermaid em um fluxo mais proximo de producao.
 
 ---
 
-## 1. Lorem Ipsum ...
+## Backend
 
-# Titulo 1
+```php
+function atualizarStatus(PDO $pdo, string $numero, string $status): array
+{
+    $stmt = $pdo->prepare('UPDATE pedidos SET status = :status, atualizado_em = NOW() WHERE numero = :numero');
+    $stmt->execute(['status' => $status, 'numero' => $numero]);
 
-## Titulo 2
+    return ['numero' => $numero, 'status' => $status, 'evento' => 'PedidoAtualizado'];
+}
+```
 
+## Frontend
+
+```javascript
+const aplicarAtualizacao = ({ numero, status, evento }) => {
+  const badge = document.querySelector(`[data-pedido="${numero}"] .badge-status`);
+  if (badge) badge.textContent = status;
+  console.log(`Evento recebido: ${evento}`);
+};
+```
+
+## Fluxo
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Operador
+    participant Painel
+    participant API
+    participant Banco
+    participant WebSocket
+
+    Operador->>Painel: Marca pedido como enviado
+    Painel->>API: PATCH /pedidos/PED-1024
+    API->>Banco: Persiste novo status
+    Banco-->>API: Status salvo
+    API->>WebSocket: Emite evento PedidoAtualizado
+    WebSocket-->>Painel: Atualiza badge e timeline
+    API-->>Operador: Confirma sucesso
+```
