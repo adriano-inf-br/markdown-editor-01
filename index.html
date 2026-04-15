@@ -4,7 +4,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editor Markdown Enterprise (Versão 0.00.023)</title>
+  <title>Editor Markdown Enterprise (Versão 0.00.025)</title>
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
@@ -152,7 +152,7 @@
     .sidebar-scroll {
       flex: 1;
       min-height: 10px;
-      max-height: 70%;
+      /*max-height: 800px;*/
       overflow: auto;
       padding: 10px;
       display: grid;
@@ -1415,9 +1415,9 @@
                 <el-button round size="small" @click="inserirTitulo(1)">H1</el-button>
                 <el-button round size="small" @click="inserirTitulo(2)">H2</el-button>
                 <el-button round size="small" @click="inserirTitulo(3)">H3</el-button>
-                <el-button round size="small" @click="envolverSelecao('**', '**')"><b>Negrito</b></el-button>
-                <el-button round size="small" @click="envolverSelecao('*', '*')"><i>Itálico</i></el-button>
-                <el-button round size="small" @click="envolverSelecao('`', '`')">Código</el-button>
+                <el-button round size="small" @click="envolverSelecao('**', 'Negrito' , '**')"><b>Negrito</b></el-button>
+                <el-button round size="small" @click="envolverSelecao('*', 'Itálico' , '*')"><i>Itálico</i></el-button>
+                <el-button round size="small" @click="envolverSelecao('`', 'Codigo' , '`')">Código</el-button>
                 <el-button round size="small" @click="inserirLista('- ')">Lista</el-button>
                 <el-button round size="small" @click="inserirTabela">Tabela</el-button>
                 <el-button round size="small" @click="inserirCodigo">Code Block</el-button>
@@ -2046,7 +2046,7 @@ public function index()
           }
         },
 
-        envolverSelecao(before, after) { this.inserirNoCursor(before, after, 'texto'); },
+        envolverSelecao(before, text, after) { this.inserirNoCursor(before, after, text); },
         inserirTitulo(level) { this.inserirNoCursor('\n' + '#'.repeat(level) + ' ', '', 'Título '+level); },
         inserirLista(prefix) { this.inserirNoCursor('\n' + prefix, '', 'Item'); },
         inserirTabela() { this.inserirNoCursor('\n| Coluna A | Coluna B |\n|---|---|\n| Valor 1 | Valor 2 |\n'); },
