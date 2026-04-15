@@ -2,7 +2,9 @@ SELECT
   numero,
   cliente_nome,
   status,
-  total
+  total,
+  sla_minutos
 FROM pedidos
 WHERE status IN ('pendente', 'separacao')
-ORDER BY criado_em DESC;
+ORDER BY sla_minutos ASC, criado_em DESC
+LIMIT 20;

@@ -2,20 +2,22 @@
 
 declare(strict_types=1);
 
-function calcularTotalPedido(array $itens): float
+final class PedidoCalculator
 {
-    $total = 0.0;
-
-    foreach ($itens as $item) {
-        $total += $item['quantidade'] * $item['preco_unitario'];
+    public function total(array $itens): float
+    {
+        return array_reduce($itens, function (float $soma, array $item): float {
+            return $soma + ($item['quantidade'] * $item['preco_unitario']);
+        }, 0.0);
     }
-
-    return $total;
 }
 
 $itens = [
-    ['produto' => 'Teclado mecanico', 'quantidade' => 1, 'preco_unitario' => 349.90],
-    ['produto' => 'Mouse sem fio', 'quantidade' => 2, 'preco_unitario' => 129.90],
+    ['sku' => 'TEC-01', 'quantidade' => 1, 'preco_unitario' => 349.90],
+    ['sku' => 'MOU-02', 'quantidade' => 2, 'preco_unitario' => 129.90],
 ];
 
-echo 'Total do pedido: R$ ' . number_format(calcularTotalPedido($itens), 2, ',', '.');
+$calculator = new PedidoCalculator();
+$total = $calculator->total($itens);
+
+echo 'Total do pedido: R$ ' . number_format($total, 2, ',', '.');

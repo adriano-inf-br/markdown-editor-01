@@ -2,41 +2,41 @@
 
 ## Kit de snippets do painel de pedidos
 
-Exemplos curtos e coerentes com a mesma operacao: pedidos, status, atendimento e expedicao.
+Exemplos curtos, mas mais proximos de um fluxo real: SLA, status, busca operacional e movimentacao do pedido.
 
 ---
 
 ## CSS
 
 ```css
-.card-status {
-  padding: 1rem;
-  border-radius: 1rem;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+.badge-status--pendente {
+  background: rgba(255, 176, 32, 0.16);
+  color: #8a5b00;
 }
 ```
 
 ## JavaScript
 
 ```javascript
-const atrasados = pedidos.filter((pedido) => pedido.status === 'pendente');
-console.log(`Pedidos atrasados: ${atrasados.length}`);
+const pedidosCriticos = pedidos.filter((pedido) => pedido.slaMinutos <= 30);
+console.log(`Pedidos criticos: ${pedidosCriticos.length}`);
 ```
 
 ## SQL
 
 ```sql
-SELECT numero, cliente_nome, status
+SELECT numero, cliente_nome, sla_minutos
 FROM pedidos
-WHERE status = 'pendente';
+WHERE status = 'pendente'
+ORDER BY sla_minutos ASC;
 ```
 
 ## Mermaid
 
 ```mermaid
 flowchart LR
-    Atendimento --> Separacao
+    Captura --> Separacao
     Separacao --> Expedicao
     Expedicao --> Entrega
+    Expedicao --> Notificacao
 ```

@@ -1,27 +1,37 @@
 <?php
 
-class PedidoController
+declare(strict_types=1);
+
+final class PedidoController
 {
+    public function __construct(private PedidoRepository $repository)
+    {
+    }
+
     public function index(): array
     {
-        $repository = new PedidoRepository();
-
         return [
             'view' => 'pedidos.index',
             'data' => [
-                'pedidos' => $repository->ultimos(10),
+                'pedidos' => $this->repository->ultimos(limit: 10),
+                'kpis' => $this->repository->resumoOperacional(),
             ],
         ];
     }
 }
 
-class PedidoRepository
+final class PedidoRepository
 {
-    public function ultimos(int $limite): array
+    public function ultimos(int $limit): array
     {
         return [
-            ['numero' => 1024, 'cliente' => 'Ana Costa', 'status' => 'separacao'],
-            ['numero' => 1025, 'cliente' => 'Bruno Lima', 'status' => 'pendente'],
+            ['numero' => 'PED-1024', 'cliente' => 'Ana Costa', 'status' => 'separacao'],
+            ['numero' => 'PED-1025', 'cliente' => 'Bruno Lima', 'status' => 'pendente'],
         ];
+    }
+
+    public function resumoOperacional(): array
+    {
+        return ['pendentes' => 12, 'separacao' => 5, 'enviados' => 21];
     }
 }
