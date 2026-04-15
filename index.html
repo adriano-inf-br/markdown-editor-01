@@ -17,262 +17,362 @@
 
   <style>
     :root {
-      --bg: #f4f6fa;
-      --panel: #f0f1f5;
-      --line: #d1d5db;
-      --line-strong: #b0b6c3;
-      --text: #23272f;
-      --muted: #6b7280;
-      --primary: #183153;
-      --primary-2: #25406b;
-      --success: #16c79a;
-      --danger: #ff647c;
-      --shadow: 0 8px 32px rgba(24,49,83,0.10);
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
+      --bg: #edf2f8;
+      --bg-soft: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f7f9fc;
+      --surface-muted: #f2f5fa;
+      --line: #d9e1ec;
+      --line-strong: #c6d1e0;
+      --text: #1f2937;
+      --text-soft: #475569;
+      --muted: #64748b;
+      --primary: #16355f;
+      --primary-2: #28518d;
+      --primary-soft: #e8f0ff;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #e11d48;
+      --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.14);
+      --shadow-md: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.05);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --app-padding: 16px;
+      --shell-gap: 16px;
+      --sidebar-width: 332px;
     }
 
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; min-height: 100%; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      height: 100%;
+    }
+
     body {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #f4f6fa 0%, #e5e7eb 100%);
-      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(40, 81, 141, 0.10), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(22, 53, 95, 0.10), transparent 26%),
+        linear-gradient(180deg, #f7f9fc 0%, #eef3f8 100%);
+      overflow: hidden;
+    }
+
+    #app {
+      min-height: 100dvh;
+    }
+
+    .app-shell {
+      min-height: 100dvh;
+      padding: var(--app-padding);
+      position: relative;
+    }
+
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      border: 0;
+      background: rgba(15, 23, 42, 0.32);
+      z-index: 20;
+      cursor: pointer;
+    }
+
+    .layout {
+      min-height: calc(100dvh - (var(--app-padding) * 2));
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--shell-gap);
+      position: relative;
     }
 
     .sidebar {
-      padding: 14px;
+      position: fixed;
+      inset: var(--app-padding) auto var(--app-padding) var(--app-padding);
+      width: min(var(--sidebar-width), calc(100vw - (var(--app-padding) * 2)));
+      z-index: 30;
+      transform: translateX(calc(-100% - 24px));
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .26s ease, opacity .22s ease;
+      overflow: hidden;
+    }
+
+    .app--sidebar-open .sidebar {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sidebar-shell {
       display: flex;
       flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .sidebar-header {
+      padding: 20px 20px 12px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(217, 225, 236, 0.85);
+    }
+
+    .sidebar-scroll {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 0 20px 20px;
+      display: grid;
       gap: 14px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      min-width: 0;
     }
 
     .brand-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: #fff;
-      border: 1px solid var(--line);
-      font-weight: 800;
       flex-shrink: 0;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 14px 28px rgba(22, 53, 95, 0.28);
     }
 
     .brand h1 {
-      background: var(--primary);
-      color: #fff;
       margin: 0;
       font-size: 1rem;
       line-height: 1.15;
-      letter-spacing: -.02em;
+      color: var(--text);
+      letter-spacing: -.03em;
     }
 
     .brand p {
-      margin: 4px 0 0;
+      margin: 6px 0 0;
       color: var(--muted);
       font-size: .82rem;
-    }
-
-    .side-section {
-      background: var(--primary-2);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
-    }
-
-    .side-title {
-      font-size: .84rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .document-list {
-      display: grid;
-      gap: 8px;
-      max-height: 280px;
-      overflow: auto;
-    }
-
-    .document-item {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: 14px;
-      padding: 10px;
-      cursor: pointer;
-      transition: .18s ease;
-    }
-
-    .document-item:hover,
-    .document-item.active {
-      border-color: rgba(91,140,255,.55);
-      background: rgba(91,140,255,.10);
-    }
-
-    .document-item-title {
-      font-size: .85rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-      word-break: break-word;
-    }
-
-    .document-item-meta {
-      font-size: .74rem;
-      color: var(--muted);
+      line-height: 1.5;
     }
 
     .main {
       display: grid;
-      gap: 14px;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: var(--shell-gap);
+      min-height: 0;
     }
 
     .topbar {
-      padding: 14px;
+      padding: 18px;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 16px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .topbar-main {
+      display: grid;
+      gap: 16px;
     }
 
     .headline {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
-      align-items: center;
       gap: 12px;
       flex-wrap: wrap;
     }
 
     .headline h2 {
       margin: 0;
-      font-size: 1rem;
-      letter-spacing: -.02em;
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      letter-spacing: -.04em;
+      color: var(--text);
     }
 
     .headline p {
-      margin: 4px 0 0;
+      margin: 6px 0 0;
       color: var(--muted);
-      font-size: .82rem;
+      font-size: .88rem;
+      line-height: 1.6;
+      max-width: 48rem;
     }
 
-    .actions-grid {
+    .headline-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .control-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      justify-content: center;
       align-items: center;
     }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+    .stats-strip {
+      display: flex;
       gap: 10px;
+      overflow: auto;
+      padding-bottom: 2px;
+      scrollbar-width: thin;
     }
 
     .stat-card {
-      padding: 12px;
+      min-width: 160px;
+      padding: 14px 16px;
       border-radius: 18px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
     }
 
     .stat-label {
-      font-size: .75rem;
+      font-size: .74rem;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
     }
 
     .stat-value {
-      font-size: .98rem;
+      font-size: .96rem;
       font-weight: 700;
       letter-spacing: -.02em;
       word-break: break-word;
+      color: var(--text);
     }
 
     .workspace {
+      min-height: 0;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--shell-gap);
+    }
+
+    .panel-surface {
+      background: var(--surface);
+      border: 1px solid rgba(217, 225, 236, 0.95);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
     }
 
     .editor-panel,
     .preview-panel {
-      min-height: 420px;
+      min-height: 0;
+      height: 100%;
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
 
+    .preview-panel--floating {
+      position: fixed;
+      inset: var(--app-padding);
+      z-index: 35;
+    }
+
     .panel-header {
-      padding: 12px 14px;
+      padding: 16px 18px;
       border-bottom: 1px solid var(--line);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
+      background: linear-gradient(180deg, rgba(247, 249, 252, 0.95), rgba(255, 255, 255, 0.98));
+    }
+
+    .panel-header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
     }
 
     .panel-title {
-      font-size: .92rem;
+      font-size: .96rem;
       font-weight: 700;
-      letter-spacing: -.01em;
+      letter-spacing: -.02em;
+      color: var(--text);
     }
 
     .panel-subtitle {
       color: var(--muted);
       font-size: .78rem;
-      margin-top: 2px;
+      margin-top: 3px;
+      line-height: 1.45;
     }
 
     .toolbar-wrap {
-      padding: 10px;
+      padding: 12px 12px 8px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.02);
+      background: var(--surface-soft);
+      max-height: 220px;
+      overflow: auto;
     }
 
     .toolbar {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      justify-content: center;
       align-items: center;
     }
 
-    .editor-wrap {
+    .editor-wrap,
+    .preview-wrap {
       flex: 1;
-      min-height: 360px;
+      min-height: 0;
+      overflow: auto;
+      background: var(--surface);
+    }
+
+    .editor-wrap {
+      padding: 0;
     }
 
     .editor-textarea {
       width: 100%;
       height: 100%;
-      min-height: 360px;
+      min-height: 100%;
       resize: none;
       border: 0;
       outline: none;
-      padding: 18px;
+      padding: 20px 22px 28px;
       color: var(--text);
-      background: transparent;
-      font-size: 14px;
-      line-height: 1.7;
+      background: #fff;
+      font-size: 15px;
+      line-height: 1.78;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
       tab-size: 2;
     }
 
     .preview-wrap {
-      flex: 1;
-      min-height: 360px;
-      overflow: auto;
-      padding: 22px;
+      padding: 24px;
     }
 
-    .preview-content { color: #e8eefc; }
-    .preview-content > :first-child { margin-top: 0; }
+    .preview-content {
+      color: var(--text);
+    }
+
+    .preview-content > :first-child {
+      margin-top: 0;
+    }
 
     .preview-content h1,
     .preview-content h2,
@@ -281,50 +381,63 @@
     .preview-content h5,
     .preview-content h6 {
       line-height: 1.22;
-      letter-spacing: -.02em;
-      margin-top: 1.2em;
-      margin-bottom: .55em;
-      color: #f7f9ff;
+      letter-spacing: -.03em;
+      margin-top: 1.24em;
+      margin-bottom: .58em;
+      color: #0f172a;
     }
 
-    .preview-content h1 { font-size: 2rem; }
-    .preview-content h2 { font-size: 1.6rem; }
-    .preview-content h3 { font-size: 1.28rem; }
+    .preview-content h1 { font-size: clamp(1.8rem, 3vw, 2.2rem); }
+    .preview-content h2 { font-size: clamp(1.45rem, 2.5vw, 1.76rem); }
+    .preview-content h3 { font-size: clamp(1.16rem, 2vw, 1.34rem); }
 
     .preview-content p,
     .preview-content li,
     .preview-content blockquote,
     .preview-content td,
     .preview-content th {
-      color: #d8e2f8;
+      color: #334155;
       line-height: 1.78;
-      font-size: .96rem;
+      font-size: .97rem;
     }
 
     .preview-content ul,
-    .preview-content ol { padding-left: 1.35rem; }
+    .preview-content ol {
+      padding-left: 1.35rem;
+    }
+
+    .preview-content a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+
+    .preview-content a:hover {
+      text-decoration: underline;
+    }
 
     .preview-content pre {
-      background: #0a1221;
-      border: 1px solid var(--line-strong);
-      border-radius: 16px;
+      background: var(--surface-muted);
+      border: 1px solid var(--line);
+      border-radius: 18px;
       overflow: auto;
       margin: 1rem 0;
       padding: 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
     .preview-content pre code.hljs {
       display: block;
       padding: 16px 18px;
-      border-radius: 16px;
+      border-radius: 18px;
       background: transparent;
     }
 
     .preview-content :not(pre) > code {
-      background: rgba(255,255,255,.06);
+      background: #eef2f7;
       padding: .2em .45em;
       border-radius: 8px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+      color: #0f172a;
     }
 
     .preview-content table {
@@ -334,7 +447,8 @@
       display: block;
       overflow-x: auto;
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 18px;
+      background: #fff;
     }
 
     .preview-content th,
@@ -346,16 +460,17 @@
     }
 
     .preview-content th {
-      background: rgba(255,255,255,.04);
+      background: var(--surface-soft);
       font-weight: 700;
+      color: #0f172a;
     }
 
     .preview-content blockquote {
       margin: 1rem 0;
-      padding: .95rem 1rem;
+      padding: 1rem 1rem 1rem 1.1rem;
       border-left: 4px solid var(--primary);
-      background: rgba(91,140,255,.08);
-      border-radius: 0 14px 14px 0;
+      background: var(--primary-soft);
+      border-radius: 0 16px 16px 0;
     }
 
     .preview-content hr {
@@ -367,19 +482,24 @@
     .preview-content img {
       max-width: 100%;
       border-radius: 16px;
+      box-shadow: var(--shadow-sm);
     }
 
     .mermaid-host {
-      background: rgba(255,255,255,.03);
+      background: var(--surface-soft);
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 16px;
+      padding: 18px;
       overflow: auto;
       margin: 1rem 0;
     }
 
     .mermaid-error {
-      color: #ffd5dc;
+      color: var(--danger);
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-radius: 14px;
+      padding: 14px;
       white-space: pre-wrap;
       line-height: 1.6;
       font-family: ui-monospace, monospace;
@@ -387,7 +507,7 @@
     }
 
     .footer-bar {
-      padding: 10px 14px 14px;
+      padding: 12px 18px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -395,165 +515,269 @@
       color: var(--muted);
       font-size: .8rem;
       flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(247, 249, 252, 0.92));
     }
 
     .empty-tip {
       color: var(--muted);
+      font-size: .9rem;
+      padding: 20px 0;
+    }
+
+    .side-section {
+      border: 1px solid rgba(217, 225, 236, 0.95);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      padding: 16px;
+    }
+
+    .side-title {
       font-size: .84rem;
-      padding: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+      letter-spacing: .01em;
+    }
+
+    .document-list {
+      display: grid;
+      gap: 8px;
+      max-height: 280px;
+      overflow: auto;
+    }
+
+    .document-item {
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      border-radius: 16px;
+      padding: 12px;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .document-item:hover,
+    .document-item.active {
+      border-color: rgba(40, 81, 141, 0.38);
+      box-shadow: 0 10px 24px rgba(40, 81, 141, 0.10);
+      transform: translateY(-1px);
+    }
+
+    .document-item-title {
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      word-break: break-word;
+      color: var(--text);
+    }
+
+    .document-item-meta {
+      font-size: .74rem;
+      color: var(--muted);
     }
 
     ul.markdown-list {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
+
     .markdown-list li {
       margin-bottom: 8px;
     }
+
     .markdown-list a {
       text-decoration: none;
-      color: #0366d6;
-      font-family: monospace;
+      color: var(--primary-2);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+      font-size: .84rem;
     }
+
     .markdown-list a:hover {
       text-decoration: underline;
     }
 
     .glass {
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(255,255,255,.52);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.72);
       border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px);
     }
 
-    .el-button+.el-button {
-      margin-left: 0px;
+    .el-button + .el-button {
+      margin-left: 0;
     }
 
-    @media (min-width: 980px) {
+    @media (min-width: 1100px) {
       .layout {
-        display: grid;
-        grid-template-columns: 320px 1fr;
+        grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      }
+
+      .layout--sidebar-closed {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: relative;
+        inset: auto;
+        width: auto;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .layout--sidebar-closed .sidebar {
+        display: none;
+      }
+
+      .topbar-main {
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
         align-items: start;
       }
-      .sidebar {
-        position: sticky;
-        top: 14px;
-        max-height: calc(100vh - 28px);
-        overflow: auto;
+
+      .control-actions {
+        justify-content: flex-end;
       }
-      .topbar {
-        grid-template-columns: 1.2fr .9fr .9fr;
-        align-items: stretch;
+
+      .stats-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        overflow: visible;
       }
+
       .workspace {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
       }
-      .editor-panel,
-      .preview-panel {
-        min-height: calc(100vh - 190px);
+
+      .workspace--preview-hidden {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .workspace--preview-hidden .preview-panel {
+        display: none;
+      }
+
+      .preview-panel--floating {
+        position: relative;
+        inset: auto;
       }
     }
   </style>
 </head>
 <body>
-  <div id="app">
-    <div class="layout">
+  <div id="app" :class="appClasses">
+    <button
+      v-if="!ui.isDesktop && (ui.sidebarOpen || ui.previewOpen)"
+      class="mobile-backdrop"
+      type="button"
+      @click="fecharPaineis"
+      aria-label="Fechar painéis"
+    ></button>
+
+    <div class="layout" :class="{ 'layout--sidebar-closed': !ui.sidebarOpen }">
       <aside class="sidebar glass">
-        <div class="brand">
-          <div class="brand-badge">MD</div>
-          <div>
-            <h1>Gerador Markdown + Mermaid</h1>
-            <p>Versão corrigida para evitar reprocessar SVG do Mermaid como texto.</p>
+        <div class="sidebar-shell">
+          <div class="sidebar-header">
+            <div class="brand">
+              <div class="brand-badge">MD</div>
+              <div>
+                <h1>Console Markdown Enterprise</h1>
+                <p>Documentos, exemplos e exportação prontos para uma experiência mais limpa no mobile e no desktop.</p>
+              </div>
+            </div>
+            <el-button v-if="!ui.isDesktop" round size="small" @click="alternarSidebar(false)">Fechar</el-button>
+          </div>
+
+          <div class="sidebar-scroll">
+            <section class="side-section">
+              <div class="side-title">Documentos</div>
+              <div style="display:grid; gap:10px; margin-bottom:10px;">
+                <el-button type="primary" round @click="criarDocumento">Novo documento</el-button>
+                <el-button round @click="duplicarDocumento" :disabled="!documentoAtual">Duplicar atual</el-button>
+              </div>
+              <div class="document-list">
+                <div
+                  v-for="doc in documentos"
+                  :key="doc.id"
+                  class="document-item"
+                  :class="{ active: doc.id === estado.documentoIdAtual }"
+                  @click="selecionarDocumento(doc.id)"
+                >
+                  <div class="document-item-title">{{ doc.nome }}</div>
+                  <div class="document-item-meta">{{ formatarData(doc.atualizadoEm) }}</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="side-section">
+              <div class="side-title">Configurações</div>
+              <el-input v-model="configuracoes.nomeArquivoExportacao" placeholder="documento-0001.html">
+                <template #prepend>Exportar</template>
+              </el-input>
+              <div style="height:10px;"></div>
+              <el-switch
+                v-model="configuracoes.autoSalvar"
+                inline-prompt
+                active-text="Auto"
+                inactive-text="Manual"
+                @change="persistirTudo"
+              />
+              <div style="height:10px;"></div>
+              <div style="font-size:.76rem;color:var(--muted);line-height:1.6;">
+                O preview usa fundo branco e tipografia escura para refletir melhor a futura impressão e a exportação em HTML.
+              </div>
+            </section>
+
+            <section class="side-section" v-if="documentoAtual">
+              <div class="side-title">Ações rápidas</div>
+              <div style="display:grid; gap:10px;">
+                <el-button round @click="renomearDocumento">Renomear</el-button>
+                <el-button round @click="copiarMarkdown">Copiar Markdown</el-button>
+                <el-button type="success" round @click="exportarHtml">Exportar HTML</el-button>
+                <el-button type="danger" plain round @click="removerDocumento" :disabled="documentos.length <= 1">Excluir</el-button>
+              </div>
+            </section>
+
+            <section class="side-section" v-if="documentoAtual">
+              <div class="side-title">Exemplos Markdown Mermaid</div>
+              <ul class="markdown-list">
+                <li><a href="./exemplo-markdown-01.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 01</a></li>
+                <li><a href="./exemplo-markdown-02.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 02</a></li>
+                <li><a href="./exemplo-markdown-03.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 03</a></li>
+                <li><a href="./exemplo-markdown-04.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 04</a></li>
+              </ul>
+            </section>
           </div>
         </div>
-
-        <section class="side-section">
-          <div class="side-title">Documentos</div>
-          <div style="display:grid; gap:10px; margin-bottom:10px;">
-            <el-button type="primary" round @click="criarDocumento">Novo documento</el-button>
-            <el-button round @click="duplicarDocumento" :disabled="!documentoAtual">Duplicar atual</el-button>
-          </div>
-          <div class="document-list">
-            <div
-              v-for="doc in documentos"
-              :key="doc.id"
-              class="document-item"
-              :class="{ active: doc.id === estado.documentoIdAtual }"
-              @click="selecionarDocumento(doc.id)"
-            >
-              <div class="document-item-title">{{ doc.nome }}</div>
-              <div class="document-item-meta">{{ formatarData(doc.atualizadoEm) }}</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="side-section">
-          <div class="side-title">Configurações</div>
-          <el-input v-model="configuracoes.nomeArquivoExportacao" placeholder="documento-0001.html">
-            <template #prepend>Exportar</template>
-          </el-input>
-          <div style="height:10px;"></div>
-          <el-switch
-            v-model="configuracoes.autoSalvar"
-            inline-prompt
-            active-text="Auto"
-            inactive-text="Manual"
-            @change="persistirTudo"
-          />
-          <div style="height:10px;"></div>
-          <div style="font-size:.76rem;color:var(--muted);line-height:1.55;">
-            O bloco Mermaid agora guarda o código em <code>data-mermaid-source</code> e renderiza em um container separado.
-          </div>
-        </section>
-
-        <section class="side-section" v-if="documentoAtual">
-          <div class="side-title">Ações</div>
-          <div style="display:grid; gap:10px;">
-            <el-button round @click="renomearDocumento">Renomear</el-button>
-            <el-button round @click="copiarMarkdown">Copiar Markdown</el-button>
-            <el-button type="success" round @click="exportarHtml">Exportar HTML</el-button>
-            <el-button type="danger" plain round @click="removerDocumento" :disabled="documentos.length <= 1">Excluir</el-button>
-          </div>
-        </section>
-
-        <section class="side-section" v-if="documentoAtual">
-          <div class="side-title">Exemplos Markdown Mermaid</div>
-          <div style="display:grid; gap:10px;">
-            <ul class="markdown-list">
-              <li><a href="./exemplo-markdown-01.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 01</a></li>
-              <li><a href="./exemplo-markdown-02.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 02</a></li>
-              <li><a href="./exemplo-markdown-03.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 03</a></li>
-              <li><a href="./exemplo-markdown-04.md" target="_blank" rel="noopener noreferrer">Markdown Exemplo 04</a></li>
-            </ul>
-          </div>
-        </section>
-        
       </aside>
 
       <main class="main">
         <section class="topbar glass">
-          <div class="headline">
-            <div>
-              <h2>{{ documentoAtual?.nome || 'Sem documento' }}</h2>
-              <p>Markdown com Mermaid, código destacado e exportação standalone.</p>
+          <div class="topbar-main">
+            <div class="headline">
+              <div>
+                <h2>{{ documentoAtual?.nome || 'Sem documento' }}</h2>
+                <p>Layout premium, mobile-first e preparado para impressão: editor e visualização ocupam a área útil da tela e os painéis laterais ficam sob demanda.</p>
+              </div>
+              <div class="headline-metrics">
+                <el-tag type="primary" effect="light">{{ estatisticas.caracteres }} chars</el-tag>
+                <el-tag type="success" effect="light">{{ estatisticas.linhas }} linhas</el-tag>
+                <el-tag type="warning" effect="light">{{ estatisticas.mermaids }} mermaids</el-tag>
+              </div>
             </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <el-tag type="primary" effect="dark">{{ estatisticas.caracteres }} chars</el-tag>
-              <el-tag type="success" effect="dark">{{ estatisticas.linhas }} linhas</el-tag>
-              <el-tag type="warning" effect="dark">{{ estatisticas.mermaids }} mermaids</el-tag>
+
+            <div class="control-actions">
+              <el-button round @click="alternarSidebar()">{{ sidebarButtonLabel }}</el-button>
+              <el-button round @click="alternarToolbar()">{{ toolbarButtonLabel }}</el-button>
+              <el-button round @click="alternarPreview()">{{ previewButtonLabel }}</el-button>
+              <el-button type="primary" round @click="salvarManual">Salvar</el-button>
+              <el-button type="success" round @click="exportarHtml">Exportar</el-button>
             </div>
           </div>
 
-          <div class="actions-grid">
-            <el-button type="primary" size="large" round @click="salvarManual">Salvar</el-button>
-            <el-button size="large" round @click="renderizarPreview">Atualizar</el-button>
-            <el-button size="large" round @click="inserirMermaid">Inserir Mermaid</el-button>
-            <el-button type="success" size="large" round @click="exportarHtml">Exportar HTML</el-button>
-          </div>
-
-          <div class="stats-grid">
+          <div class="stats-strip">
             <div class="stat-card">
               <div class="stat-label">Arquivo de exportação</div>
               <div class="stat-value">{{ configuracoes.nomeArquivoExportacao }}</div>
@@ -573,16 +797,20 @@
           </div>
         </section>
 
-        <section class="workspace">
-          <article class="editor-panel glass">
+        <section class="workspace" :class="{ 'workspace--preview-hidden': ui.isDesktop && !ui.previewOpen }">
+          <article class="editor-panel panel-surface">
             <div class="panel-header">
               <div>
                 <div class="panel-title">Editor Markdown</div>
-                <div class="panel-subtitle">Toolbar básica e foco em estabilidade</div>
+                <div class="panel-subtitle">Superfície clara, foco em leitura e toolbar recolhível para ganhar espaço útil.</div>
+              </div>
+              <div class="panel-header-actions">
+                <el-button round size="small" @click="alternarToolbar()">{{ toolbarButtonLabel }}</el-button>
+                <el-button v-if="!ui.isDesktop" round size="small" @click="alternarPreview(true)">Abrir preview</el-button>
               </div>
             </div>
 
-            <div class="toolbar-wrap">
+            <div v-show="ui.toolbarOpen" class="toolbar-wrap">
               <div class="toolbar">
                 <el-button round size="small" @click="inserirTitulo(1)">H1</el-button>
                 <el-button round size="small" @click="inserirTitulo(2)">H2</el-button>
@@ -644,13 +872,20 @@
             </div>
           </article>
 
-          <article class="preview-panel glass">
+          <article
+            v-show="ui.isDesktop || ui.previewOpen"
+            class="preview-panel panel-surface"
+            :class="{ 'preview-panel--floating': !ui.isDesktop }"
+          >
             <div class="panel-header">
               <div>
                 <div class="panel-title">Visualização</div>
-                <div class="panel-subtitle">Mermaid isolado do SVG renderizado</div>
+                <div class="panel-subtitle">A mesma linguagem visual clara da exportação, pronta para leitura em tela e impressão futura.</div>
               </div>
-              <el-button round size="small" @click="renderizarPreview">Atualizar</el-button>
+              <div class="panel-header-actions">
+                <el-button round size="small" @click="renderizarPreview">Atualizar</el-button>
+                <el-button round size="small" @click="alternarPreview(false)">{{ ui.isDesktop ? 'Recolher' : 'Fechar' }}</el-button>
+              </div>
             </div>
 
             <div class="preview-wrap">
@@ -658,8 +893,6 @@
               <div v-else class="preview-content" v-html="htmlRenderizado"></div>
             </div>
           </article>
-        </section>
-        <section>
         </section>
       </main>
     </div>
@@ -913,6 +1146,7 @@ public function index()
     createApp({
       data() {
         const saved = loadStorage();
+        const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 1100 : true;
         const docs = saved?.documentos?.length ? saved.documentos : [{
           id: uid(),
           nome: 'Documento 0001',
@@ -933,6 +1167,12 @@ public function index()
           status: {
             mensagem: 'Pronto',
             ultimoSalvamento: saved?.status?.ultimoSalvamento || ''
+          },
+          ui: {
+            isDesktop,
+            sidebarOpen: isDesktop,
+            previewOpen: isDesktop,
+            toolbarOpen: isDesktop
           },
           htmlRenderizado: '',
           temporizadorSalvar: null
@@ -959,13 +1199,68 @@ public function index()
             linhas: txt ? txt.split('\n').length : 0,
             mermaids: (txt.match(/```mermaid/g) || []).length
           };
+        },
+        appClasses() {
+          return [
+            'app-shell',
+            {
+              'app--desktop': this.ui.isDesktop,
+              'app--sidebar-open': this.ui.sidebarOpen
+            }
+          ];
+        },
+        sidebarButtonLabel() {
+          if (this.ui.isDesktop) return this.ui.sidebarOpen ? 'Ocultar painel' : 'Mostrar painel';
+          return this.ui.sidebarOpen ? 'Fechar menu' : 'Menu';
+        },
+        previewButtonLabel() {
+          if (this.ui.isDesktop) return this.ui.previewOpen ? 'Ocultar preview' : 'Mostrar preview';
+          return this.ui.previewOpen ? 'Fechar preview' : 'Preview';
+        },
+        toolbarButtonLabel() {
+          return this.ui.toolbarOpen ? 'Ocultar barra' : 'Ferramentas';
         }
       },
+      beforeUnmount() {
+        window.removeEventListener('resize', this.atualizarLayout);
+      },
       mounted() {
+        this.atualizarLayout(true);
+        window.addEventListener('resize', this.atualizarLayout);
         this.renderizarPreview();
       },
       methods: {
         formatarData: formatDate,
+        atualizarLayout(forceReset = false) {
+          const isDesktop = window.innerWidth >= 1100;
+          const mudouModo = isDesktop !== this.ui.isDesktop;
+          this.ui.isDesktop = isDesktop;
+
+          if (mudouModo || forceReset) {
+            this.ui.sidebarOpen = isDesktop;
+            this.ui.previewOpen = isDesktop;
+            this.ui.toolbarOpen = isDesktop;
+          }
+        },
+        alternarSidebar(force) {
+          const next = typeof force === 'boolean' ? force : !this.ui.sidebarOpen;
+          this.ui.sidebarOpen = next;
+          if (!this.ui.isDesktop && next) this.ui.previewOpen = false;
+        },
+        alternarPreview(force) {
+          const next = typeof force === 'boolean' ? force : !this.ui.previewOpen;
+          this.ui.previewOpen = next;
+          if (!this.ui.isDesktop && next) this.ui.sidebarOpen = false;
+        },
+        alternarToolbar(force) {
+          this.ui.toolbarOpen = typeof force === 'boolean' ? force : !this.ui.toolbarOpen;
+        },
+        fecharPaineis() {
+          if (!this.ui.isDesktop) {
+            this.ui.sidebarOpen = false;
+            this.ui.previewOpen = false;
+          }
+        },
         payload() {
           return {
             documentos: this.documentos,
@@ -1193,6 +1488,7 @@ public function index()
           this.estado.documentoIdAtual = doc.id;
           this.renderizarPreview();
           this.persistirTudo();
+          if (!this.ui.isDesktop) this.ui.sidebarOpen = false;
           ElementPlus.ElMessage.success('Novo documento criado.');
         },
         duplicarDocumento() {
@@ -1206,12 +1502,14 @@ public function index()
           this.estado.documentoIdAtual = copy.id;
           this.renderizarPreview();
           this.persistirTudo();
+          if (!this.ui.isDesktop) this.ui.sidebarOpen = false;
           ElementPlus.ElMessage.success('Documento duplicado.');
         },
         selecionarDocumento(id) {
           this.estado.documentoIdAtual = id;
           this.renderizarPreview();
           this.persistirTudo();
+          if (!this.ui.isDesktop) this.ui.sidebarOpen = false;
         },
         renomearDocumento() {
           if (!this.documentoAtual) return;
@@ -1240,6 +1538,7 @@ public function index()
             this.estado.documentoIdAtual = this.documentos[0]?.id || null;
             this.renderizarPreview();
             this.persistirTudo();
+            if (!this.ui.isDesktop) this.ui.sidebarOpen = false;
             ElementPlus.ElMessage.success('Documento excluído.');
           }).catch(() => {});
         },
@@ -1265,25 +1564,31 @@ public function index()
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.css" />
   <style>
-    body{margin:0;padding:24px;font-family:Inter,Arial,sans-serif;background:#0b1020;color:#edf2ff}
-    .documento{max-width:1000px;margin:0 auto;background:#121a2f;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-    a{color:#8fb0ff;text-decoration:none} a:hover{text-decoration:underline}
+    :root{color-scheme:light}
+    body{margin:0;padding:24px;font-family:Inter,Arial,sans-serif;background:#eff4f9;color:#1f2937}
+    .documento{max-width:1000px;margin:0 auto;background:#fff;border:1px solid #d9e1ec;border-radius:24px;padding:32px;box-shadow:0 24px 60px rgba(15,23,42,.08)}
+    a{color:#1d4ed8;text-decoration:none} a:hover{text-decoration:underline}
     .conteudo> :first-child{margin-top:0}
-    .conteudo h1,.conteudo h2,.conteudo h3,.conteudo h4,.conteudo h5,.conteudo h6{line-height:1.22;letter-spacing:-.02em;color:#f7f9ff}
-    .conteudo p,.conteudo li,.conteudo blockquote,.conteudo td,.conteudo th{color:#d8e2f8;line-height:1.78}
-    .conteudo pre{background:#0a1221;border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:auto;margin:1rem 0;padding:0}
+    .conteudo h1,.conteudo h2,.conteudo h3,.conteudo h4,.conteudo h5,.conteudo h6{line-height:1.22;letter-spacing:-.03em;color:#0f172a}
+    .conteudo p,.conteudo li,.conteudo blockquote,.conteudo td,.conteudo th{color:#334155;line-height:1.78}
+    .conteudo pre{background:#f2f5fa;border:1px solid #d9e1ec;border-radius:18px;overflow:auto;margin:1rem 0;padding:0}
     .conteudo pre code.hljs{display:block;padding:16px 18px}
-    .conteudo :not(pre)>code{background:rgba(255,255,255,.06);padding:.2em .45em;border-radius:8px}
-    .conteudo table{width:100%;border-collapse:collapse;margin:1rem 0;display:block;overflow-x:auto;border:1px solid rgba(255,255,255,.08);border-radius:16px}
-    .conteudo th,.conteudo td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;white-space:nowrap}
-    .conteudo th{background:rgba(255,255,255,.04);font-weight:700}
-    .conteudo blockquote{margin:1rem 0;padding:.95rem 1rem;border-left:4px solid #5b8cff;background:rgba(91,140,255,.08);border-radius:0 14px 14px 0}
-    .conteudo hr{border:0;border-top:1px solid rgba(255,255,255,.14);margin:1.5rem 0}
+    .conteudo :not(pre)>code{background:#eef2f7;padding:.2em .45em;border-radius:8px;color:#0f172a}
+    .conteudo table{width:100%;border-collapse:collapse;margin:1rem 0;display:block;overflow-x:auto;border:1px solid #d9e1ec;border-radius:18px;background:#fff}
+    .conteudo th,.conteudo td{padding:12px 14px;border-bottom:1px solid #d9e1ec;text-align:left;white-space:nowrap}
+    .conteudo th{background:#f8fafc;font-weight:700;color:#0f172a}
+    .conteudo blockquote{margin:1rem 0;padding:1rem 1rem 1rem 1.1rem;border-left:4px solid #28518d;background:#e8f0ff;border-radius:0 16px 16px 0}
+    .conteudo hr{border:0;border-top:1px solid #c6d1e0;margin:1.5rem 0}
     .conteudo img{max-width:100%;border-radius:16px}
-    .mermaid-host{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px;overflow:auto;margin:1rem 0}
-    .mermaid-error{color:#ffd5dc;white-space:pre-wrap;line-height:1.6;font-family:ui-monospace,monospace;font-size:.88rem}
+    .mermaid-host{background:#f8fafc;border:1px solid #d9e1ec;border-radius:18px;padding:18px;overflow:auto;margin:1rem 0}
+    .mermaid-error{color:#e11d48;background:#fff1f2;border:1px solid #fecdd3;border-radius:14px;padding:14px;white-space:pre-wrap;line-height:1.6;font-family:ui-monospace,monospace;font-size:.88rem}
+    @page{margin:16mm}
+    @media print{
+      body{padding:0;background:#fff}
+      .documento{max-width:none;margin:0;border:0;box-shadow:none;border-radius:0;padding:0}
+    }
   </style>
 </head>
 <body>
