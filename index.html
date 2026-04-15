@@ -4,7 +4,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editor Markdown Enterprise (Versão 0.00.022)</title>
+  <title>Editor Markdown Enterprise (Versão 0.00.023)</title>
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   <meta http-equiv="pragma" content="no-cache">
@@ -1962,6 +1962,8 @@ public function index()
         },
         async renderizarPreview() {
           try {
+            this.status.mensagem = 'Renderizando XXX ...';
+
             const rawHtml = md.render(this.markdownAtual || '');
             this.htmlRenderizado = DOMPurify.sanitize(rawHtml, {
               USE_PROFILES: { html: true },
@@ -1969,7 +1971,7 @@ public function index()
             });
             await nextTick();
             await this.renderMermaidBlocks();
-            this.status.mensagem = 'Renderizando ...';
+            this.status.mensagem = 'Renderizado';
           } catch (e) {
             console.error(e);
             this.status.mensagem = 'Erro na renderização!';
